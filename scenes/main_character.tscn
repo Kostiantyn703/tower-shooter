@@ -1,0 +1,152 @@
+[gd_scene load_steps=21 format=3 uid="uid://c2spl7ttdqrnh"]
+
+[ext_resource type="Script" uid="uid://ciae70i8kbkf4" path="res://scripts/MainCharacter.cs" id="1_ogw1n"]
+[ext_resource type="Texture2D" uid="uid://22ge0h5lvxvh" path="res://content/anims/player/idle/idle01.png" id="2_0d0nc"]
+[ext_resource type="Texture2D" uid="uid://bnhqktl27jnoh" path="res://content/anims/player/air/air01.png" id="2_ogw1n"]
+[ext_resource type="Texture2D" uid="uid://km7oomty7lht" path="res://content/anims/player/run/run01.png" id="3_d3a2h"]
+[ext_resource type="Texture2D" uid="uid://cfr5s6040308p" path="res://content/anims/player/aim/aim_down.png" id="4_ogw1n"]
+[ext_resource type="Texture2D" uid="uid://1t14k3duybbm" path="res://content/anims/player/aim/aim_up.png" id="5_k0aba"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d0nc"]
+atlas = ExtResource("2_ogw1n")
+region = Rect2(0, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3a2h"]
+atlas = ExtResource("2_ogw1n")
+region = Rect2(29, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ltrl"]
+atlas = ExtResource("2_ogw1n")
+region = Rect2(58, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvjf6"]
+atlas = ExtResource("2_ogw1n")
+region = Rect2(87, 0, 28, 28)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k0aba"]
+load_path = "res://.godot/imported/lay_down.png-0277a6b57b17371f6f05b2fea38a9d56.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rh4e"]
+atlas = ExtResource("3_d3a2h")
+region = Rect2(1, 1, 40, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is85u"]
+atlas = ExtResource("3_d3a2h")
+region = Rect2(42, 1, 40, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o67j2"]
+atlas = ExtResource("3_d3a2h")
+region = Rect2(83, 1, 40, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lotbi"]
+atlas = ExtResource("3_d3a2h")
+region = Rect2(124, 1, 40, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1p1k"]
+atlas = ExtResource("3_d3a2h")
+region = Rect2(165, 1, 40, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtvrk"]
+atlas = ExtResource("3_d3a2h")
+region = Rect2(206, 1, 40, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hodpe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d0nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3a2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ltrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvjf6")
+}],
+"loop": true,
+"name": &"air",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_k0aba")
+}],
+"loop": true,
+"name": &"lay_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rh4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is85u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o67j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lotbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1p1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtvrk")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nayhv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ogw1n")
+}],
+"loop": true,
+"name": &"aim_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0d0nc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_k0aba")
+}],
+"loop": true,
+"name": &"look_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qoi8n"]
+height = 40.0
+
+[node name="MainCharacter" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_ogw1n")
+JumpVelocity = -600
+metadata/_edit_group_ = true
+
+[node name="MovementAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 8)
+sprite_frames = SubResource("SpriteFrames_hodpe")
+animation = &"air"
+offset = Vector2(0, -8)
+
+[node name="IdleAnim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nayhv")
+animation = &"aim_down"
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qoi8n")

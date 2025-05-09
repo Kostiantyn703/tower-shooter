@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://lcuswrxjlw1n"]
+
+[ext_resource type="Script" uid="uid://b1cipg0ljgn25" path="res://scripts/Sandbox.cs" id="1_rgld7"]
+[ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
+[ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/background.png" id="3_a8pr3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rgld7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a8pr3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j6lu3"]
+
+[node name="Sandbox" type="Node"]
+script = ExtResource("1_rgld7")
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Ground"]
+position = Vector2(400, 500)
+shape = SubResource("WorldBoundaryShape2D_rgld7")
+
+[node name="LeftWall" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftWall"]
+position = Vector2(20, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_a8pr3")
+
+[node name="RightWall" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightWall"]
+position = Vector2(780, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_j6lu3")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(400, 300)
+scale = Vector2(2, 2)
+texture = ExtResource("3_a8pr3")
+
+[node name="MainCharacter" parent="." instance=ExtResource("2_a8pr3")]
+
+[node name="InitialPlayerPosition" type="Marker2D" parent="."]
+position = Vector2(400, 300)
