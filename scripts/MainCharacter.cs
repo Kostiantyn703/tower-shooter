@@ -23,6 +23,19 @@ public partial class MainCharacter : CharacterBody2D
 		CS_AIM_135
 	}
 	
+	private enum AimDirection
+	{
+		AD_UP,
+		AD_DOWN,
+		AD_LEFT,
+		AD_LEFT_45,		// left up
+		AD_LEFT_135,	// left down
+		AD_RIGHT,
+		AD_RIGHT_45,	// right up
+		AD_RIGHT_135,	// right down
+		AD_NONE
+	}
+
 	CharacterState State = CharacterState.CS_IDLE;
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
