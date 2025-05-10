@@ -21,7 +21,6 @@ class AnimationHandler
 	public void Init(ref AnimatedSprite2D sprite)
 	{
 		CurrentSprite = sprite;
-		//IdleAnim = GetNode<AnimatedSprite2D>("IdleAnim");
 	}
 	
 	public void OnStateChange(Node owner, ref CharacterState state, AimDirection direction)
@@ -29,9 +28,9 @@ class AnimationHandler
 		state.PrepareAnimation(owner, ref CurrentSprite, direction);
 	}
 	
-	public void HandleAnimation(ref CharacterState state)
+	public void HandleAnimation(ref CharacterState state, AimDirection direction)
 	{
-		state.ProcessAnimation(ref CurrentSprite);
+		state.ProcessAnimation(ref CurrentSprite, direction);
 	}
 }
 
@@ -58,15 +57,30 @@ class CharacterStateMachine
 	
 	public void SetAimDirection(Vector2 direction)
 	{
-		if (direction.X > 0)
+		if (direction.X > 0 && direction.Y == 0)
 		{
 			AimDir = AimDirection.AD_RIGHT; 
 		}
-		if (direction.X < 0)
+		if (direction.X < 0 && direction.Y == 0)
 		{
 			AimDir = AimDirection.AD_LEFT;
 		}
-		
+		if (direction.X > 0 && direction.Y < 0)
+		{
+			AimDir = AimDirection.AD_RIGHT_45;
+		}
+		if (direction.X < 0 && direction.Y < 0)
+		{
+			AimDir = AimDirection.AD_LEFT_45;
+		}
+		if (direction.X > 0 && direction.Y > 0)
+		{
+			AimDir = AimDirection.AD_RIGHT_135;
+		}
+		if (direction.X < 0 && direction.Y > 0)
+		{
+			AimDir = AimDirection.AD_LEFT_135;
+		}
 	}
 	
 	public void LogCurrentState()
@@ -77,21 +91,60 @@ class CharacterStateMachine
 
 abstract class CharacterState
 {
+	protected bool IsAimRight(AimDirection direction)
+	{
+		return direction == AimDirection.AD_RIGHT;
+	}
+	
+	protected bool IsAimRight45(AimDirection direction)
+	{
+		return direction == AimDirection.AD_RIGHT_45;
+	}
+	
+	protected bool IsAimRight135(AimDirection direction)
+	{
+		return direction == AimDirection.AD_RIGHT_135;
+	}
+	
+	private bool IsAimAllRight(AimDirection direction)
+	{
+		return IsAimRight(direction) || IsAimRight45(direction) || IsAimRight135(direction);
+	}
+	
+	protected bool IsAimLeft(AimDirection direction)
+	{
+		return direction == AimDirection.AD_LEFT;
+	}
+	
+	protected bool IsAimLeft45(AimDirection direction)
+	{
+		return direction == AimDirection.AD_LEFT_45;
+	}
+	
+	protected bool IsAimLeft135(AimDirection direction)
+	{
+		return direction == AimDirection.AD_LEFT_135;
+	}
+	
+	private bool IsAimAllLeft(AimDirection direction)
+	{
+		return IsAimLeft(direction) || IsAimLeft45(direction) || IsAimLeft135(direction);
+	}
+	
 	public abstract string GetName();
 	public virtual void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite, AimDirection direction)
 	{
-		if (direction == AimDirection.AD_RIGHT)
+		if (IsAimAllRight(direction))
 		{
 			sprite.FlipH = false;
 		}
-		else if (direction == AimDirection.AD_LEFT)
+		else if (IsAimAllLeft(direction))
 		{
 			sprite.FlipH = true;
 		}
-		GD.Print("Character State");
 	}
 	
-	public abstract void ProcessAnimation(ref AnimatedSprite2D sprite);
+	public abstract void ProcessAnimation(ref AnimatedSprite2D sprite, AimDirection direction);
 }
 
 class IdleState : CharacterState
@@ -107,7 +160,7 @@ class IdleState : CharacterState
 		sprite = idleAnim;
 	}
 	
-	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite, AimDirection direction)
 	{
 		sprite.Animation = "idle";
 	}
@@ -126,9 +179,21 @@ class MoveState : CharacterState
 		sprite = moveAnim;
 	}
 	
-	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite, AimDirection direction)
 	{
-		sprite.Animation = "run";
+		if (IsAimRight45(direction) || IsAimLeft45(direction))
+		{
+			sprite.Animation = "run_aim_45";
+		}
+		else if (IsAimRight135(direction) || IsAimLeft135(direction))
+		{
+			sprite.Animation = "run_aim_135";
+		}
+		else
+		{
+			sprite.Animation = "run";
+		}
+		
 		sprite.Play();
 	}
 }
@@ -146,7 +211,7 @@ class AirState : CharacterState
 		sprite = moveAnim;
 	}
 	
-	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite, AimDirection direction)
 	{
 		sprite.Animation = "air";
 		sprite.Play();
@@ -165,12 +230,7 @@ public partial class MainCharacter : CharacterBody2D
 	private Vector2 InputDirection = Vector2.Zero;
 	
 	CharacterStateMachine StateMachine = null;
-	AnimationHandler AnimHandler = null;	
-	
-//class HoldState : CharacterState
-//{
-	//
-//}
+	AnimationHandler AnimHandler = null;
 	
 	public override void _Ready()
 	{
@@ -196,7 +256,7 @@ public partial class MainCharacter : CharacterBody2D
 		StateMachine.SetAimDirection(InputDirection);
 		StateMachine.LogCurrentState();
 		AnimHandler.OnStateChange(this, ref StateMachine.State, StateMachine.AimDir);
-		AnimHandler.HandleAnimation(ref StateMachine.State);
+		AnimHandler.HandleAnimation(ref StateMachine.State, StateMachine.AimDir);
 		
 		MoveAndSlide();
 	}
@@ -204,8 +264,6 @@ public partial class MainCharacter : CharacterBody2D
 	private void ProcessInput(ref Vector2 velocity)
 	{
 		InputDirection = Input.GetVector("move_left", "move_right", "up", "down");
-		
-		//GD.Print(InputDirection.X + " " + InputDirection.Y);
 		
 		if (InputDirection.X != 0)
 		{
