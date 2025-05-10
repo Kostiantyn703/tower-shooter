@@ -1,6 +1,70 @@
 using Godot;
 using System;
 
+class CharacterState
+{
+	public virtual string GetName() { return "none"; }
+	public virtual void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite) {}
+	public virtual void ProcessAnimation(ref AnimatedSprite2D sprite) {}
+}
+
+class IdleState : CharacterState
+{
+	public override string GetName() { return "idle"; }
+	
+	public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
+	{
+		owner.GetNode<AnimatedSprite2D>("MovementAnim").Visible = false;
+		AnimatedSprite2D idleAnim = owner.GetNode<AnimatedSprite2D>("IdleAnim");
+		idleAnim.Visible = true;
+		sprite = idleAnim;
+	}
+	
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	{
+		sprite.Animation = "idle";
+		sprite.Stop();
+	}
+}
+
+class MoveState : CharacterState
+{
+	public override string GetName() { return "move"; }
+	
+	public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
+	{
+		owner.GetNode<AnimatedSprite2D>("IdleAnim").Visible = false;
+		AnimatedSprite2D moveAnim = owner.GetNode<AnimatedSprite2D>("MovementAnim");
+		moveAnim.Visible = true;
+		sprite = moveAnim;
+	}
+	
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	{
+		sprite.Animation = "run";
+		sprite.Play();
+	}
+}
+
+class AirState : CharacterState
+{
+	public override string GetName() { return "air"; }
+	
+	public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
+	{
+		owner.GetNode<AnimatedSprite2D>("IdleAnim").Visible = false;
+		AnimatedSprite2D moveAnim = owner.GetNode<AnimatedSprite2D>("MovementAnim");
+		moveAnim.Visible = true;
+		sprite = moveAnim;
+	}
+	
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	{
+		sprite.Animation = "air";
+		sprite.Play();
+	}
+}
+
 public partial class MainCharacter : CharacterBody2D
 {
 	[Export]
@@ -52,70 +116,6 @@ public partial class MainCharacter : CharacterBody2D
 			state.ProcessAnimation(ref CurrentSprite);
 		}
 		
-	}
-	
-	class CharacterState
-	{
-		public virtual string GetName() { return "none"; }
-		public virtual void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite) {}
-		public virtual void ProcessAnimation(ref AnimatedSprite2D sprite) {}
-	}
-
-	class IdleState : CharacterState
-	{
-		public override string GetName() { return "idle"; }
-		
-		public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
-		{
-			owner.GetNode<AnimatedSprite2D>("MovementAnim").Visible = false;
-			AnimatedSprite2D idleAnim = owner.GetNode<AnimatedSprite2D>("IdleAnim");
-			idleAnim.Visible = true;
-			sprite = idleAnim;
-		}
-		
-		public override void ProcessAnimation(ref AnimatedSprite2D sprite)
-		{
-			sprite.Animation = "idle";
-			sprite.Stop();
-		}
-	}
-
-	class MoveState : CharacterState
-	{
-		public override string GetName() { return "move"; }
-		
-		public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
-		{
-			owner.GetNode<AnimatedSprite2D>("IdleAnim").Visible = false;
-			AnimatedSprite2D moveAnim = owner.GetNode<AnimatedSprite2D>("MovementAnim");
-			moveAnim.Visible = true;
-			sprite = moveAnim;
-		}
-		
-		public override void ProcessAnimation(ref AnimatedSprite2D sprite)
-		{
-			sprite.Animation = "run";
-			sprite.Play();
-		}
-	}
-
-	class AirState : CharacterState
-	{
-		public override string GetName() { return "air"; }
-		
-		public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
-		{
-			owner.GetNode<AnimatedSprite2D>("IdleAnim").Visible = false;
-			AnimatedSprite2D moveAnim = owner.GetNode<AnimatedSprite2D>("MovementAnim");
-			moveAnim.Visible = true;
-			sprite = moveAnim;
-		}
-		
-		public override void ProcessAnimation(ref AnimatedSprite2D sprite)
-		{
-			sprite.Animation = "air";
-			sprite.Play();
-		}
 	}
 
 	class CharacterStateMachine
