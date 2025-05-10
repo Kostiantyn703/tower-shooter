@@ -46,6 +46,17 @@ class CharacterStateMachine
 	
 	CharacterState State = null;
 }
+
+class AnimationHandler
+{
+
+	
+	public void HandleAnimation(ref AnimatedSprite2D move, ref AnimatedSprite2D idle)
+	{
+		
+	}
+	
+}
 //class HoldState : CharacterState
 //{
 	//
@@ -62,6 +73,7 @@ public partial class MainCharacter : CharacterBody2D
 	private Vector2 InputDirection = Vector2.Zero;
 	
 	CharacterStateMachine StateMachine = null;
+	AnimationHandler AnimHandler = null;
 	
 	private enum AimDirection
 	{
@@ -84,6 +96,7 @@ public partial class MainCharacter : CharacterBody2D
 	{
 		AimDir = AimDirection.AD_RIGHT;
 		StateMachine = new CharacterStateMachine();
+		AnimHandler = new AnimationHandler();
 	}
 	
 	public override void _PhysicsProcess(double delta)
@@ -102,7 +115,7 @@ public partial class MainCharacter : CharacterBody2D
 		StateMachine.LogCurrentState();
 		
 		MoveAndSlide();
-		HandleAnimation();
+		GetAndHandleAnimation();
 		
 	}
 	
@@ -186,9 +199,12 @@ public partial class MainCharacter : CharacterBody2D
 		//GD.Print(Velocity.X + " " + Velocity.Y);
 	}
 	
-	private void HandleAnimation()
+	private void GetAndHandleAnimation()
 	{
 		AnimatedSprite2D moveAnim = GetNode<AnimatedSprite2D>("MovementAnim");
+		AnimatedSprite2D idleAnim = GetNode<AnimatedSprite2D>("IdleAnim");
+		AnimHandler.HandleAnimation(ref moveAnim, ref idleAnim);
+		
 		if (Velocity.Length() > 0) {
 			moveAnim.Play();
 		}
@@ -197,7 +213,7 @@ public partial class MainCharacter : CharacterBody2D
 			moveAnim.Stop();
 		}
 		
-		AnimatedSprite2D idleAnim = GetNode<AnimatedSprite2D>("IdleAnim");
+		
 		
 		//if (IsIdleState())
 		//{
