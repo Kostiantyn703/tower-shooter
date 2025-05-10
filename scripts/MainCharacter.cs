@@ -4,21 +4,37 @@ using System;
 class CharacterState
 {
 	public virtual string GetName() { return "none"; }
+	public virtual void ProcessAnimation(ref AnimatedSprite2D sprite) {}
 }
 
 class IdleState : CharacterState
 {
 	public override string GetName() { return "idle"; }
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	{
+		sprite.Animation = "air";
+		sprite.Stop();
+	}
 }
 
 class MoveState : CharacterState
 {
 	public override string GetName() { return "move"; }
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	{
+		sprite.Animation = "run";
+		sprite.Play();
+	}
 }
 
 class AirState : CharacterState
 {
 	public override string GetName() { return "air"; }
+	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+	{
+		sprite.Animation = "air";
+		sprite.Play();
+	}
 }
 
 class CharacterStateMachine
@@ -44,18 +60,7 @@ class CharacterStateMachine
 		GD.Print(State.GetName());
 	}
 	
-	CharacterState State = null;
-}
-
-class AnimationHandler
-{
-
-	
-	public void HandleAnimation(ref AnimatedSprite2D move, ref AnimatedSprite2D idle)
-	{
-		
-	}
-	
+	public CharacterState State = null;
 }
 //class HoldState : CharacterState
 //{
@@ -70,6 +75,7 @@ public partial class MainCharacter : CharacterBody2D
 	public int JumpVelocity { get; set; } = -450;
 	
 	private bool IsHold = false;
+	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	private Vector2 InputDirection = Vector2.Zero;
 	
 	CharacterStateMachine StateMachine = null;
@@ -90,13 +96,39 @@ public partial class MainCharacter : CharacterBody2D
 	
 	private AimDirection AimDir = AimDirection.AD_NONE;
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	
+	
+	class AnimationHandler
+	{
+		AnimatedSprite2D CurrentSprite;
+		
+		public void Init(ref AnimatedSprite2D sprite)
+		{
+			CurrentSprite = sprite;
+			//IdleAnim = GetNode<AnimatedSprite2D>("IdleAnim");
+		}
+		
+		public void OnStateChange(ref CharacterState state)
+		{
+			
+			
+			
+		}
+		
+		public void HandleAnimation(ref CharacterState state)
+		{
+			state.ProcessAnimation(ref CurrentSprite);
+		}
+		
+	}
 	
 	public override void _Ready()
 	{
 		AimDir = AimDirection.AD_RIGHT;
 		StateMachine = new CharacterStateMachine();
 		AnimHandler = new AnimationHandler();
+		AnimatedSprite2D sprite = GetNode<AnimatedSprite2D>("MovementAnim");
+		AnimHandler.Init(ref sprite);
 	}
 	
 	public override void _PhysicsProcess(double delta)
@@ -113,9 +145,11 @@ public partial class MainCharacter : CharacterBody2D
 		Velocity = velocity;
 		StateMachine.HandleState(Velocity, InputDirection);
 		StateMachine.LogCurrentState();
+		AnimHandler.OnStateChange(ref StateMachine.State);
+		AnimHandler.HandleAnimation(ref StateMachine.State);
 		
 		MoveAndSlide();
-		GetAndHandleAnimation();
+		//GetAndHandleAnimation();
 		
 	}
 	
@@ -141,78 +175,18 @@ public partial class MainCharacter : CharacterBody2D
 				velocity.Y = JumpVelocity;
 			}
 		}
-		
-		//if (IsOnFloor())
-		//{
-			//if (InputDirection.Y == 1) {
-				//if (!IsHold)	State = CharacterState.CS_LAY_DOWN;
-				//else State = CharacterState.CS_AIM_DOWN;
-			//}
-			//else if (InputDirection.Y == -1)
-			//{
-				//State = CharacterState.CS_AIM_UP;
-			//}
-		//}
-		//if (Input.IsActionPressed("hold")) {
-			//IsHold = true;
-		//}
-		//else if (Input.IsActionJustReleased("hold"))
-		//{
-			//IsHold = false;
-		//} 
-		//
-		//
-		//if (InputDirection == Vector2.Zero && IsOnFloor() || (IsHold && InputDirection.X != 0)) {
-			//State = CharacterState.CS_IDLE;
-		//}
-		//
-		//if (InputDirection.X != 0 && !IsHold)
-		//{
-			//velocity.X = InputDirection.X * Speed;
-			//if (IsOnFloor())
-			//{
-				//State = CharacterState.CS_RUN;
-			//}
-			//else
-			//{
-				//State = CharacterState.CS_AIR;
-			//} 
-		//}
-		//else if (InputDirection.X == 0)
-		//{
-			//velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		//}
-		//
-		//if (IsOnFloor())
-		//{
-			//if (InputDirection.Y == 1) {
-				//if (!IsHold)	State = CharacterState.CS_LAY_DOWN;
-				//else State = CharacterState.CS_AIM_DOWN;
-			//}
-			//else if (InputDirection.Y == -1)
-			//{
-				//State = CharacterState.CS_AIM_UP;
-			//}
-		//}
-		//
-		
-		//GD.Print(Velocity.X + " " + Velocity.Y);
 	}
 	
 	private void GetAndHandleAnimation()
 	{
-		AnimatedSprite2D moveAnim = GetNode<AnimatedSprite2D>("MovementAnim");
-		AnimatedSprite2D idleAnim = GetNode<AnimatedSprite2D>("IdleAnim");
-		AnimHandler.HandleAnimation(ref moveAnim, ref idleAnim);
 		
-		if (Velocity.Length() > 0) {
-			moveAnim.Play();
-		}
-		else
-		{
-			moveAnim.Stop();
-		}
-		
+		//if (InputDirection.X != 0)
+		//{
+			//moveAnim.FlipH = InputDirection.X < 0;
+			//idleAnim.FlipH = InputDirection.X < 0;
+		//}
+		//
+	
 		
 		
 		//if (IsIdleState())
@@ -247,11 +221,7 @@ public partial class MainCharacter : CharacterBody2D
 				//break;
 		//}
 		//
-		//if (InputDirection.X != 0)
-		//{
-			//moveAnim.FlipH = InputDirection.X < 0;
-			//idleAnim.FlipH = InputDirection.X < 0;
-		//}
+		
 		
 	}
 }
