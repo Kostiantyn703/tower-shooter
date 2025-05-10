@@ -240,6 +240,7 @@ animation = &"run_aim_45"
 offset = Vector2(0, -8)
 
 [node name="IdleAnim" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_nayhv")
 animation = &"aim_down"
 offset = Vector2(0, -8)
