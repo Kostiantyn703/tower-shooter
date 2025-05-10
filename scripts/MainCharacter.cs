@@ -1,72 +1,6 @@
 using Godot;
 using System;
 
-class CharacterState
-{
-	public virtual string GetName() { return "none"; }
-	public virtual void ProcessAnimation(ref AnimatedSprite2D sprite) {}
-}
-
-class IdleState : CharacterState
-{
-	public override string GetName() { return "idle"; }
-	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
-	{
-		sprite.Animation = "air";
-		sprite.Stop();
-	}
-}
-
-class MoveState : CharacterState
-{
-	public override string GetName() { return "move"; }
-	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
-	{
-		sprite.Animation = "run";
-		sprite.Play();
-	}
-}
-
-class AirState : CharacterState
-{
-	public override string GetName() { return "air"; }
-	public override void ProcessAnimation(ref AnimatedSprite2D sprite)
-	{
-		sprite.Animation = "air";
-		sprite.Play();
-	}
-}
-
-class CharacterStateMachine
-{
-	public void HandleState(Vector2 velocity, Vector2 direction)
-	{
-		if (velocity.Length() == 0 && direction.Length() == 0)
-		{
-			State = new IdleState();
-		}
-		else if (velocity.X != 0 && direction.X != 0 && velocity.Y == 0)
-		{
-			State = new MoveState();
-		}
-		else if (velocity.Y != 0 )
-		{
-			State = new AirState();
-		}
-	}
-	
-	public void LogCurrentState()
-	{
-		GD.Print(State.GetName());
-	}
-	
-	public CharacterState State = null;
-}
-//class HoldState : CharacterState
-//{
-	//
-//}
-
 public partial class MainCharacter : CharacterBody2D
 {
 	[Export]
@@ -100,7 +34,7 @@ public partial class MainCharacter : CharacterBody2D
 	
 	class AnimationHandler
 	{
-		AnimatedSprite2D CurrentSprite;
+		public AnimatedSprite2D CurrentSprite;
 		
 		public void Init(ref AnimatedSprite2D sprite)
 		{
@@ -108,11 +42,9 @@ public partial class MainCharacter : CharacterBody2D
 			//IdleAnim = GetNode<AnimatedSprite2D>("IdleAnim");
 		}
 		
-		public void OnStateChange(ref CharacterState state)
+		public void OnStateChange(Node owner, ref CharacterState state)
 		{
-			
-			
-			
+			state.PrepareAnimation(owner, ref CurrentSprite);
 		}
 		
 		public void HandleAnimation(ref CharacterState state)
@@ -121,6 +53,100 @@ public partial class MainCharacter : CharacterBody2D
 		}
 		
 	}
+	
+	class CharacterState
+	{
+		public virtual string GetName() { return "none"; }
+		public virtual void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite) {}
+		public virtual void ProcessAnimation(ref AnimatedSprite2D sprite) {}
+	}
+
+	class IdleState : CharacterState
+	{
+		public override string GetName() { return "idle"; }
+		
+		public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
+		{
+			owner.GetNode<AnimatedSprite2D>("MovementAnim").Visible = false;
+			AnimatedSprite2D idleAnim = owner.GetNode<AnimatedSprite2D>("IdleAnim");
+			idleAnim.Visible = true;
+			sprite = idleAnim;
+		}
+		
+		public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+		{
+			sprite.Animation = "idle";
+			sprite.Stop();
+		}
+	}
+
+	class MoveState : CharacterState
+	{
+		public override string GetName() { return "move"; }
+		
+		public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
+		{
+			owner.GetNode<AnimatedSprite2D>("IdleAnim").Visible = false;
+			AnimatedSprite2D moveAnim = owner.GetNode<AnimatedSprite2D>("MovementAnim");
+			moveAnim.Visible = true;
+			sprite = moveAnim;
+		}
+		
+		public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+		{
+			sprite.Animation = "run";
+			sprite.Play();
+		}
+	}
+
+	class AirState : CharacterState
+	{
+		public override string GetName() { return "air"; }
+		
+		public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite)
+		{
+			owner.GetNode<AnimatedSprite2D>("IdleAnim").Visible = false;
+			AnimatedSprite2D moveAnim = owner.GetNode<AnimatedSprite2D>("MovementAnim");
+			moveAnim.Visible = true;
+			sprite = moveAnim;
+		}
+		
+		public override void ProcessAnimation(ref AnimatedSprite2D sprite)
+		{
+			sprite.Animation = "air";
+			sprite.Play();
+		}
+	}
+
+	class CharacterStateMachine
+	{
+		public CharacterState State = null;
+		
+		public void HandleState(Vector2 velocity, Vector2 direction)
+		{
+			if (velocity.Length() == 0 && direction.Length() == 0)
+			{
+				State = new IdleState();
+			}
+			else if (velocity.X != 0 && direction.X != 0 && velocity.Y == 0)
+			{
+				State = new MoveState();
+			}
+			else if (velocity.Y != 0 )
+			{
+				State = new AirState();
+			}
+		}
+		
+		public void LogCurrentState()
+		{
+			GD.Print(State.GetName());
+		}
+	}
+//class HoldState : CharacterState
+//{
+	//
+//}
 	
 	public override void _Ready()
 	{
@@ -145,12 +171,10 @@ public partial class MainCharacter : CharacterBody2D
 		Velocity = velocity;
 		StateMachine.HandleState(Velocity, InputDirection);
 		StateMachine.LogCurrentState();
-		AnimHandler.OnStateChange(ref StateMachine.State);
+		AnimHandler.OnStateChange(this, ref StateMachine.State);
 		AnimHandler.HandleAnimation(ref StateMachine.State);
 		
 		MoveAndSlide();
-		//GetAndHandleAnimation();
-		
 	}
 	
 	private void ProcessInput(ref Vector2 velocity)
@@ -175,53 +199,5 @@ public partial class MainCharacter : CharacterBody2D
 				velocity.Y = JumpVelocity;
 			}
 		}
-	}
-	
-	private void GetAndHandleAnimation()
-	{
-		
-		//if (InputDirection.X != 0)
-		//{
-			//moveAnim.FlipH = InputDirection.X < 0;
-			//idleAnim.FlipH = InputDirection.X < 0;
-		//}
-		//
-	
-		
-		
-		//if (IsIdleState())
-		//{
-			//moveAnim.Visible = false;
-			//idleAnim.Visible = true;
-		//}
-		//else
-		//{
-			//moveAnim.Visible = true;
-			//idleAnim.Visible = false;
-		//}
-		
-		//switch (State) {
-			//case CharacterState.CS_IDLE:
-				//idleAnim.Animation = "idle";
-				//break;
-			//case CharacterState.CS_AIM_UP:
-				//idleAnim.Animation = "look_up";
-				//break;
-			//case CharacterState.CS_AIM_DOWN:
-				//idleAnim.Animation = "aim_down";
-				//break;
-			//case CharacterState.CS_LAY_DOWN:
-				//moveAnim.Animation = "lay_down";
-				//break;
-			//case CharacterState.CS_RUN:
-				//moveAnim.Animation = "run";
-				//break;
-			//case CharacterState.CS_AIR:
-				//moveAnim.Animation = "air";
-				//break;
-		//}
-		//
-		
-		
 	}
 }
