@@ -50,12 +50,20 @@ class CharacterStateMachine
 		CurrentState = new IdleState();
 	}
 	
-	public bool ChangeState(Vector2 velocity, Vector2 direction)
+	public bool ChangeState(Vector2 velocity, Vector2 direction, bool isHold)
 	{
 		CharacterState newState = null;
 		if (velocity.Length() == 0 && direction.Length() == 0)
 		{
-			newState = new IdleState();
+			if (!isHold)
+			{
+                newState = new IdleState();
+            }
+			else
+			{
+				newState = new HoldState();
+			}
+			
 		}
 		else if (velocity.X != 0 && direction.X != 0 && velocity.Y == 0)
 		{
@@ -230,6 +238,42 @@ class IdleState : CharacterState
 	}
 }
 
+class HoldState : CharacterState
+{
+	public override string GetName() { return "hold"; }
+
+    public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite, AimDirection direction)
+    {
+        sprite = SwitchSprite(owner, "MovementAnim", "IdleAnim");
+    }
+
+    public override void ProcessAnimation(AnimatedSprite2D sprite, AimDirection direction)
+    {
+        if (IsAimUp(direction))
+        {
+            sprite.Animation = "aim_up";
+        }
+        else if (IsAimDown(direction))
+        {
+            sprite.Animation = "aim_down";
+        }
+        else if (IsAimRight45(direction) || IsAimLeft45(direction))
+        {
+            sprite.Animation = "aim_45";
+        }
+        else if (IsAimRight135(direction) || IsAimLeft135(direction))
+        {
+            sprite.Animation = "aim_135";
+        }
+        else
+        {
+            sprite.Animation = "idle";
+        }
+
+        sprite.Play();
+    }
+}
+
 class MoveState : CharacterState
 {
 	public override string GetName() { return "move"; }
@@ -309,7 +353,7 @@ public partial class MainCharacter : CharacterBody2D
 		
 		ProcessInput(ref velocity);
 		Velocity = velocity;
-		if (StateMachine.ChangeState(Velocity, InputDirection))
+		if (StateMachine.ChangeState(Velocity, InputDirection, IsHold))
 		{
 			AnimHandler.OnStateChange(this, StateMachine.CurrentState, StateMachine.AimDir);
 			AnimHandler.HandleAnimation(StateMachine.CurrentState, StateMachine.AimDir);
@@ -325,15 +369,28 @@ public partial class MainCharacter : CharacterBody2D
 	private void ProcessInput(ref Vector2 velocity)
 	{
 		InputDirection = Input.GetVector("move_left", "move_right", "up", "down");
-		
-		if (InputDirection.X != 0)
+
+        if (Input.IsActionJustPressed("hold"))
+        {
+            IsHold = true;
+
+        }
+        if (Input.IsActionJustReleased("hold"))
+        {
+            IsHold = false;
+        }
+
+		if (!IsHold)
 		{
-			velocity.X = InputDirection.X * Speed; 
-		}
-		else if (InputDirection.X == 0)
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
+            if (InputDirection.X != 0)
+            {
+                velocity.X = InputDirection.X * Speed;
+            }
+            else if (InputDirection.X == 0)
+            {
+                velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+            }
+        }
 		
 		if (Input.IsActionJustPressed("jump"))
 		{

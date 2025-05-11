@@ -1,6 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://c2spl7ttdqrnh"]
+[gd_scene load_steps=38 format=3 uid="uid://c2spl7ttdqrnh"]
 
-[ext_resource type="Script" uid="uid://ciae70i8kbkf4" path="res://scripts/MainCharacter.cs" id="1_ogw1n"]
+[ext_resource type="Script" path="res://scripts/MainCharacter.cs" id="1_g2mf5"]
 [ext_resource type="Texture2D" uid="uid://22ge0h5lvxvh" path="res://content/anims/player/idle/idle01.png" id="2_0d0nc"]
 [ext_resource type="Texture2D" uid="uid://bnhqktl27jnoh" path="res://content/anims/player/air/air01.png" id="2_ogw1n"]
 [ext_resource type="Texture2D" uid="uid://km7oomty7lht" path="res://content/anims/player/run/run01.png" id="3_d3a2h"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cfr5s6040308p" path="res://content/anims/player/aim/aim_down.png" id="4_ogw1n"]
 [ext_resource type="Texture2D" uid="uid://dp4plj2mmwqrd" path="res://content/anims/player/run/run_aim_45.png" id="5_0ltrl"]
 [ext_resource type="Texture2D" uid="uid://1t14k3duybbm" path="res://content/anims/player/aim/aim_up.png" id="5_k0aba"]
+[ext_resource type="Texture2D" uid="uid://dluhf0mbs1fm5" path="res://content/anims/player/aim/aim02.png" id="6_uh7hc"]
+[ext_resource type="Texture2D" uid="uid://cmiwdsat8uwh6" path="res://content/anims/player/aim/aim01.png" id="7_hvvkl"]
 [ext_resource type="Texture2D" uid="uid://df3ube00ocex7" path="res://content/anims/player/idle/lay_down.png" id="8_0ltrl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0d0nc"]
@@ -202,10 +204,34 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_uh7hc")
+}],
+"loop": true,
+"name": &"aim_135",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_hvvkl")
+}],
+"loop": true,
+"name": &"aim_45",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_ogw1n")
 }],
 "loop": true,
 "name": &"aim_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_k0aba")
+}],
+"loop": true,
+"name": &"aim_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -223,14 +249,6 @@ animations = [{
 "loop": true,
 "name": &"lay_down",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_k0aba")
-}],
-"loop": true,
-"name": &"look_up",
-"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qoi8n"]
@@ -238,7 +256,7 @@ height = 40.0
 
 [node name="MainCharacter" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_ogw1n")
+script = ExtResource("1_g2mf5")
 JumpVelocity = -600
 metadata/_edit_group_ = true
 
@@ -250,7 +268,7 @@ offset = Vector2(0, -8)
 
 [node name="IdleAnim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nayhv")
-animation = &"look_up"
+animation = &"aim_135"
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://lcuswrxjlw1n"]
 
-[ext_resource type="Script" uid="uid://b1cipg0ljgn25" path="res://scripts/Sandbox.cs" id="1_rgld7"]
+[ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/background.png" id="3_a8pr3"]
 [ext_resource type="PackedScene" uid="uid://cvpy2pcikg123" path="res://scenes/platform.tscn" id="4_j6lu3"]
@@ -12,7 +12,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j6lu3"]
 
 [node name="Sandbox" type="Node"]
-script = ExtResource("1_rgld7")
+script = ExtResource("1_51233")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(400, 300)
@@ -27,28 +27,40 @@ position = Vector2(400, 300)
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform01" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(80, 336)
+position = Vector2(80, 376)
 
 [node name="Platform02" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(112, 336)
+position = Vector2(112, 376)
 
 [node name="Platform03" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(144, 336)
+position = Vector2(144, 376)
 
 [node name="Platform04" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(176, 336)
+position = Vector2(176, 376)
 
 [node name="Platform05" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(496, 200)
+position = Vector2(368, 248)
 
 [node name="Platform06" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(464, 200)
+position = Vector2(336, 248)
 
 [node name="Platform07" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(400, 200)
+position = Vector2(272, 248)
 
 [node name="Platform08" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(432, 200)
+position = Vector2(304, 248)
+
+[node name="Platform09" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(784, 328)
+
+[node name="Platform10" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(752, 328)
+
+[node name="Platform11" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(688, 328)
+
+[node name="Platform12" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(720, 328)
 
 [node name="Boundaries" type="Node" parent="."]
 
