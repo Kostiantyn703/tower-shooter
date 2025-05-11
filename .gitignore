@@ -14,3 +14,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# VS
+.vs/
+*.csproj
+*.csproj.old
+*.csproj.user

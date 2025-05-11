@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Contra Tower": {
+      "commandName": "Project"
+    },
+    "Profile 1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\repos\\engines\\godot\\godot\\bin\\godot.windows.editor.x86_64.mono.exe",
+      "commandLineArgs": "--path, --verbose",
+      "workingDirectory": ".",
+      "nativeDebugging": true
+    }
+  }
+}
