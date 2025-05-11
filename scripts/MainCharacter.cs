@@ -132,6 +132,7 @@ abstract class CharacterState
 	}
 	
 	public abstract string GetName();
+	
 	public virtual void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite, AimDirection direction)
 	{
 		if (IsAimAllRight(direction))
@@ -145,6 +146,14 @@ abstract class CharacterState
 	}
 	
 	public abstract void ProcessAnimation(ref AnimatedSprite2D sprite, AimDirection direction);
+	
+	protected AnimatedSprite2D SwitchSprite(Node owner, string spriteNameToHide, string spriteNameToShow)
+	{
+		owner.GetNode<AnimatedSprite2D>(spriteNameToHide).Visible = false;
+		AnimatedSprite2D resultSprite = owner.GetNode<AnimatedSprite2D>(spriteNameToShow);
+		resultSprite.Visible = true;
+		return resultSprite;
+	}
 }
 
 class IdleState : CharacterState
@@ -154,10 +163,7 @@ class IdleState : CharacterState
 	public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite, AimDirection direction)
 	{
 		base.PrepareAnimation(owner, ref sprite, direction);
-		owner.GetNode<AnimatedSprite2D>("MovementAnim").Visible = false;
-		AnimatedSprite2D idleAnim = owner.GetNode<AnimatedSprite2D>("IdleAnim");
-		idleAnim.Visible = true;
-		sprite = idleAnim;
+		sprite = SwitchSprite(owner, "MovementAnim", "IdleAnim");
 	}
 	
 	public override void ProcessAnimation(ref AnimatedSprite2D sprite, AimDirection direction)
@@ -173,10 +179,7 @@ class MoveState : CharacterState
 	public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite, AimDirection direction)
 	{
 		base.PrepareAnimation(owner, ref sprite, direction);
-		owner.GetNode<AnimatedSprite2D>("IdleAnim").Visible = false;
-		AnimatedSprite2D moveAnim = owner.GetNode<AnimatedSprite2D>("MovementAnim");
-		moveAnim.Visible = true;
-		sprite = moveAnim;
+		sprite = SwitchSprite(owner, "IdleAnim", "MovementAnim");
 	}
 	
 	public override void ProcessAnimation(ref AnimatedSprite2D sprite, AimDirection direction)
@@ -205,10 +208,7 @@ class AirState : CharacterState
 	public override void PrepareAnimation(Node owner, ref AnimatedSprite2D sprite, AimDirection direction)
 	{
 		base.PrepareAnimation(owner, ref sprite, direction);
-		owner.GetNode<AnimatedSprite2D>("IdleAnim").Visible = false;
-		AnimatedSprite2D moveAnim = owner.GetNode<AnimatedSprite2D>("MovementAnim");
-		moveAnim.Visible = true;
-		sprite = moveAnim;
+		sprite = SwitchSprite(owner, "IdleAnim", "MovementAnim");;
 	}
 	
 	public override void ProcessAnimation(ref AnimatedSprite2D sprite, AimDirection direction)
