@@ -102,6 +102,14 @@ class CharacterStateMachine
 		{
 			newAimDir = AimDirection.AD_LEFT_135;
 		}
+		if (direction.X == 0 && direction.Y < 0)
+		{
+			newAimDir = AimDirection.AD_UP;
+		}
+		if (direction.X == 0 && direction.Y > 0)
+		{
+			newAimDir = AimDirection.AD_DOWN;
+		}
 		
 		if (AimDir != newAimDir)
 		{
@@ -159,6 +167,16 @@ abstract class CharacterState
 		return IsAimLeft(direction) || IsAimLeft45(direction) || IsAimLeft135(direction);
 	}
 	
+	protected bool IsAimUp(AimDirection direction)
+	{
+		return direction == AimDirection.AD_UP;
+	}
+	
+	protected bool IsAimDown(AimDirection direction)
+	{
+		return direction == AimDirection.AD_DOWN;
+	}
+	
 	public abstract string GetName();
 	
 	public void FlipAnimation(ref AnimatedSprite2D sprite, AimDirection direction)
@@ -166,12 +184,10 @@ abstract class CharacterState
 		if (IsAimAllRight(direction))
 		{
 			sprite.FlipH = false;
-			GD.Print("UnFlip");
 		}
 		else if (IsAimAllLeft(direction))
 		{
 			sprite.FlipH = true;
-			GD.Print("Flip");
 		}
 	}
 	
@@ -199,8 +215,18 @@ class IdleState : CharacterState
 	
 	public override void ProcessAnimation(AnimatedSprite2D sprite, AimDirection direction)
 	{
-		sprite.Animation = "idle";
-		sprite.Play();
+		if (IsAimUp(direction))
+		{
+			sprite.Animation = "look_up";
+		}
+		else if (IsAimDown(direction))
+		{
+			sprite.Animation = "lay_down";
+		}
+		else
+		{
+			sprite.Animation = "idle";
+		}
 	}
 }
 

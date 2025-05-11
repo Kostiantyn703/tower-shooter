@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c2spl7ttdqrnh"]
+[gd_scene load_steps=36 format=3 uid="uid://c2spl7ttdqrnh"]
 
 [ext_resource type="Script" uid="uid://ciae70i8kbkf4" path="res://scripts/MainCharacter.cs" id="1_ogw1n"]
 [ext_resource type="Texture2D" uid="uid://22ge0h5lvxvh" path="res://content/anims/player/idle/idle01.png" id="2_0d0nc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cfr5s6040308p" path="res://content/anims/player/aim/aim_down.png" id="4_ogw1n"]
 [ext_resource type="Texture2D" uid="uid://dp4plj2mmwqrd" path="res://content/anims/player/run/run_aim_45.png" id="5_0ltrl"]
 [ext_resource type="Texture2D" uid="uid://1t14k3duybbm" path="res://content/anims/player/aim/aim_up.png" id="5_k0aba"]
+[ext_resource type="Texture2D" uid="uid://df3ube00ocex7" path="res://content/anims/player/idle/lay_down.png" id="8_0ltrl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0d0nc"]
 atlas = ExtResource("2_ogw1n")
@@ -213,6 +214,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_0ltrl")
+}],
+"loop": true,
+"name": &"lay_down",
 "speed": 5.0
 }, {
 "frames": [{
