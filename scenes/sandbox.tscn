@@ -51,28 +51,50 @@ position = Vector2(272, 248)
 position = Vector2(304, 248)
 
 [node name="Platform09" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(784, 328)
+position = Vector2(760, 328)
 
 [node name="Platform10" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(752, 328)
+position = Vector2(728, 328)
 
 [node name="Platform11" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(688, 328)
+position = Vector2(664, 328)
 
 [node name="Platform12" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(720, 328)
+position = Vector2(696, 328)
+
+[node name="Platform13" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(464, 120)
+
+[node name="Platform14" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(496, 120)
+
+[node name="Platform15" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(528, 120)
+
+[node name="Platform16" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(560, 120)
+
+[node name="Platform17" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(144, 56)
+
+[node name="Platform18" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(176, 56)
+
+[node name="Platform19" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(208, 56)
+
+[node name="Platform20" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(240, 56)
 
 [node name="Boundaries" type="Node" parent="."]
 
 [node name="Ground" type="StaticBody2D" parent="Boundaries"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Ground"]
 position = Vector2(400, 500)
 shape = SubResource("WorldBoundaryShape2D_rgld7")
 
 [node name="LeftWall" type="StaticBody2D" parent="Boundaries"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftWall"]
 position = Vector2(20, 0)
@@ -80,7 +102,6 @@ rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_a8pr3")
 
 [node name="RightWall" type="StaticBody2D" parent="Boundaries"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightWall"]
 position = Vector2(780, 0)

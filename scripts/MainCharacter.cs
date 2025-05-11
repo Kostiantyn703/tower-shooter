@@ -225,7 +225,7 @@ class IdleState : CharacterState
 	{
 		if (IsAimUp(direction))
 		{
-			sprite.Animation = "look_up";
+			sprite.Animation = "aim_up";
 		}
 		else if (IsAimDown(direction))
 		{
@@ -343,16 +343,20 @@ public partial class MainCharacter : CharacterBody2D
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+		Vector2 velocity = GetRealVelocity();
 		
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
 			velocity.Y += gravity * (float)delta;
 		}
-		
-		ProcessInput(ref velocity);
-		Velocity = velocity;
+
+        ProcessInput(ref velocity);
+        if (IsOnWall())
+        {
+			velocity.Y = 0;
+        }
+        Velocity = velocity;
 		if (StateMachine.ChangeState(Velocity, InputDirection, IsHold))
 		{
 			AnimHandler.OnStateChange(this, StateMachine.CurrentState, StateMachine.AimDir);
@@ -364,12 +368,11 @@ public partial class MainCharacter : CharacterBody2D
 			AnimHandler.HandleAnimation(StateMachine.CurrentState, StateMachine.AimDir);
 		}
 		MoveAndSlide();
-	}
+    }
 	
 	private void ProcessInput(ref Vector2 velocity)
 	{
 		InputDirection = Input.GetVector("move_left", "move_right", "up", "down");
-
         if (Input.IsActionJustPressed("hold"))
         {
             IsHold = true;
@@ -384,8 +387,9 @@ public partial class MainCharacter : CharacterBody2D
 		{
             if (InputDirection.X != 0)
             {
+				FixInputDirection();
                 velocity.X = InputDirection.X * Speed;
-            }
+			}
             else if (InputDirection.X == 0)
             {
                 velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
@@ -400,4 +404,18 @@ public partial class MainCharacter : CharacterBody2D
 			}
 		}
 	}
+
+	private void FixInputDirection()
+	{
+		if (IsOnWall()) return;
+
+        if (InputDirection.X > 0 && InputDirection.X != 1)
+        {
+            InputDirection.X = 1;
+        }
+        else if (InputDirection.X < 0 && InputDirection.X != -1)
+        {
+            InputDirection.X = -1;
+        }
+    }
 }
