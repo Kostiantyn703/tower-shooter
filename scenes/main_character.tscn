@@ -236,13 +236,12 @@ metadata/_edit_group_ = true
 [node name="MovementAnim" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_hodpe")
-animation = &"run_aim_45"
+animation = &"run"
 offset = Vector2(0, -8)
 
 [node name="IdleAnim" type="AnimatedSprite2D" parent="."]
-visible = false
 sprite_frames = SubResource("SpriteFrames_nayhv")
-animation = &"aim_down"
+animation = &"look_up"
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
