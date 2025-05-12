@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://lcuswrxjlw1n"]
+[gd_scene load_steps=11 format=3 uid="uid://lcuswrxjlw1n"]
 
 [ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
-[ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/background.png" id="3_a8pr3"]
+[ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/environment/background.png" id="3_a8pr3"]
+[ext_resource type="Texture2D" uid="uid://clb3dc5t2xqgh" path="res://content/environment/wall01.png" id="3_vbowh"]
 [ext_resource type="PackedScene" uid="uid://cvpy2pcikg123" path="res://scenes/platform.tscn" id="4_j6lu3"]
+[ext_resource type="Texture2D" uid="uid://o6c5ey11xdpk" path="res://content/environment/floor01.png" id="5_ipmjo"]
+[ext_resource type="Texture2D" uid="uid://dbx6y23rtktyv" path="res://content/environment/floor02.png" id="6_w24sq"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rgld7"]
 distance = -12.0
@@ -29,9 +32,6 @@ position = Vector2(400, 300)
 
 [node name="Platforms" type="Node" parent="."]
 
-[node name="Platform01" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(16, 376)
-
 [node name="Platform02" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(48, 376)
 
@@ -42,51 +42,45 @@ position = Vector2(80, 376)
 position = Vector2(112, 376)
 
 [node name="Platform05" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(432, 224)
+position = Vector2(448, 224)
 
 [node name="Platform06" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(400, 224)
+position = Vector2(416, 224)
 
 [node name="Platform07" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(336, 224)
+position = Vector2(352, 224)
 
 [node name="Platform08" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(368, 224)
+position = Vector2(384, 224)
 
 [node name="Platform09" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(624, 376)
-
-[node name="Platform10" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(592, 376)
-
-[node name="Platform11" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(528, 376)
-
-[node name="Platform12" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(560, 376)
-
-[node name="Platform13" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(272, 224)
-
-[node name="Platform14" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(304, 224)
-
-[node name="Platform15" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(16, 56)
-
-[node name="Platform16" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(48, 56)
-
-[node name="Platform17" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(656, 376)
 
-[node name="Platform18" parent="Platforms" instance=ExtResource("4_j6lu3")]
+[node name="Platform10" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(624, 376)
+
+[node name="Platform11" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(560, 376)
+
+[node name="Platform12" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(592, 376)
+
+[node name="Platform13" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(288, 224)
+
+[node name="Platform14" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(320, 224)
+
+[node name="Platform16" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(48, 72)
+
+[node name="Platform17" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(688, 376)
 
-[node name="Platform19" parent="Platforms" instance=ExtResource("4_j6lu3")]
+[node name="Platform18" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(720, 376)
 
-[node name="Platform20" parent="Platforms" instance=ExtResource("4_j6lu3")]
+[node name="Platform19" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(752, 376)
 
 [node name="Platform21" parent="Platforms" instance=ExtResource("4_j6lu3")]
@@ -102,64 +96,61 @@ position = Vector2(208, 376)
 position = Vector2(240, 376)
 
 [node name="Platform25" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(560, 224)
+position = Vector2(576, 224)
 
 [node name="Platform26" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(528, 224)
+position = Vector2(544, 224)
 
 [node name="Platform27" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(464, 224)
+position = Vector2(480, 224)
 
 [node name="Platform28" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(496, 224)
+position = Vector2(512, 224)
 
 [node name="Platform29" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(208, 224)
+position = Vector2(224, 224)
 
 [node name="Platform30" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(240, 224)
+position = Vector2(256, 224)
 
 [node name="Platform31" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(80, 56)
+position = Vector2(80, 72)
 
 [node name="Platform32" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(112, 56)
+position = Vector2(112, 72)
 
 [node name="Platform33" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(144, 56)
+position = Vector2(144, 72)
 
 [node name="Platform34" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(176, 56)
+position = Vector2(176, 72)
 
 [node name="Platform35" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(208, 56)
+position = Vector2(208, 72)
 
 [node name="Platform36" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(240, 56)
+position = Vector2(240, 72)
 
 [node name="Platform37" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(528, 56)
+position = Vector2(560, 72)
 
 [node name="Platform38" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(560, 56)
+position = Vector2(592, 72)
 
 [node name="Platform39" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(592, 56)
+position = Vector2(624, 72)
 
 [node name="Platform40" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(624, 56)
+position = Vector2(656, 72)
 
 [node name="Platform41" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(656, 56)
+position = Vector2(688, 72)
 
 [node name="Platform42" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(688, 56)
+position = Vector2(720, 72)
 
 [node name="Platform43" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(720, 56)
-
-[node name="Platform44" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(752, 56)
+position = Vector2(752, 72)
 
 [node name="Boundaries" type="Node" parent="."]
 
@@ -172,13 +163,38 @@ shape = SubResource("WorldBoundaryShape2D_rgld7")
 [node name="LeftWall" type="StaticBody2D" parent="Boundaries"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftWall"]
-position = Vector2(34, 0)
+position = Vector2(64, 0)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_a8pr3")
 
 [node name="RightWall" type="StaticBody2D" parent="Boundaries"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightWall"]
-position = Vector2(734, 0)
+position = Vector2(736, 0)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_j6lu3")
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(400, 520)
+scale = Vector2(0.92, 1)
+texture = ExtResource("6_w24sq")
+
+[node name="Underground01" type="Sprite2D" parent="."]
+position = Vector2(400, 552)
+scale = Vector2(0.92, 1)
+texture = ExtResource("5_ipmjo")
+
+[node name="Underground02" type="Sprite2D" parent="."]
+position = Vector2(400, 600)
+scale = Vector2(0.92, 1)
+texture = ExtResource("5_ipmjo")
+
+[node name="WallLeft" type="Sprite2D" parent="."]
+position = Vector2(784, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("3_vbowh")
+
+[node name="WallRight" type="Sprite2D" parent="."]
+position = Vector2(16, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("3_vbowh")
