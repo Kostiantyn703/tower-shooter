@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://lcuswrxjlw1n"]
+[gd_scene load_steps=12 format=3 uid="uid://lcuswrxjlw1n"]
 
 [ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://clb3dc5t2xqgh" path="res://content/environment/wall01.png" id="3_vbowh"]
 [ext_resource type="PackedScene" uid="uid://cvpy2pcikg123" path="res://scenes/platform.tscn" id="4_j6lu3"]
 [ext_resource type="Texture2D" uid="uid://o6c5ey11xdpk" path="res://content/environment/floor01.png" id="5_ipmjo"]
+[ext_resource type="PackedScene" uid="uid://b3a285u6o3g1q" path="res://scenes/platform6.tscn" id="5_uk5io"]
 [ext_resource type="Texture2D" uid="uid://dbx6y23rtktyv" path="res://content/environment/floor02.png" id="6_w24sq"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rgld7"]
@@ -31,15 +32,6 @@ texture = ExtResource("3_a8pr3")
 position = Vector2(400, 300)
 
 [node name="Platforms" type="Node" parent="."]
-
-[node name="Platform02" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(48, 376)
-
-[node name="Platform03" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(80, 376)
-
-[node name="Platform04" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(112, 376)
 
 [node name="Platform05" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(448, 224)
@@ -82,18 +74,6 @@ position = Vector2(720, 376)
 
 [node name="Platform19" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(752, 376)
-
-[node name="Platform21" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(144, 376)
-
-[node name="Platform22" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(176, 376)
-
-[node name="Platform23" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(208, 376)
-
-[node name="Platform24" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(240, 376)
 
 [node name="Platform25" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(576, 224)
@@ -151,6 +131,12 @@ position = Vector2(720, 72)
 
 [node name="Platform43" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(752, 72)
+
+[node name="Platform" parent="Platforms" instance=ExtResource("5_uk5io")]
+position = Vector2(224, 376)
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("5_uk5io")]
+position = Vector2(96, 376)
 
 [node name="Boundaries" type="Node" parent="."]
 

@@ -50,30 +50,26 @@ class CharacterStateMachine
 		CurrentState = new IdleState();
 	}
 	
-	public bool ChangeState(Vector2 velocity, Vector2 direction, bool isHold)
+	public bool ChangeState(Vector2 velocity, Vector2 direction, bool isHold, bool isOnFloor)
 	{
 		CharacterState newState = null;
-		if (velocity.Length() == 0 && direction.Length() == 0)
+		if (isHold && isOnFloor)
 		{
-			if (!isHold)
-			{
-                newState = new IdleState();
-            }
-			else
-			{
-				newState = new HoldState();
-			}
-			
+            newState = new HoldState();
+        }
+		else if (isOnFloor && velocity.Length() == 0 && direction.Length() == 0)
+		{
+			newState = new IdleState();
 		}
 		else if (velocity.X != 0 && direction.X != 0 && velocity.Y == 0)
 		{
 			newState = new MoveState();
 		}
-		else if (velocity.Y != 0 )
+		else if (!isOnFloor && velocity.Y != 0 )
 		{
 			newState = new AirState();
 		}
-		
+
 		if (newState != null && CurrentState.GetName() != newState.GetName()) {
 			CurrentState = newState;
 			LogCurrentState();
@@ -339,11 +335,12 @@ public partial class MainCharacter : CharacterBody2D
 		AnimHandler = new AnimationHandler();
 		AnimatedSprite2D sprite = GetNode<AnimatedSprite2D>("MovementAnim");
 		AnimHandler.Init(sprite);
+		PlatformOnLeave = PlatformOnLeaveEnum.DoNothing;
 	}
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = GetRealVelocity();
+		Vector2 velocity = Velocity;
 		
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -352,12 +349,8 @@ public partial class MainCharacter : CharacterBody2D
 		}
 
         ProcessInput(ref velocity);
-        if (IsOnWall())
-        {
-			velocity.Y = 0;
-        }
         Velocity = velocity;
-		if (StateMachine.ChangeState(Velocity, InputDirection, IsHold))
+		if (StateMachine.ChangeState(Velocity, InputDirection, IsHold, IsOnFloor()))
 		{
 			AnimHandler.OnStateChange(this, StateMachine.CurrentState, StateMachine.AimDir);
 			AnimHandler.HandleAnimation(StateMachine.CurrentState, StateMachine.AimDir);
@@ -395,6 +388,10 @@ public partial class MainCharacter : CharacterBody2D
                 velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
             }
         }
+		if (IsHold && IsOnFloor())
+		{
+			velocity.X = 0;
+		}
 		
 		if (Input.IsActionJustPressed("jump"))
 		{
