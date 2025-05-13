@@ -45,18 +45,6 @@ position = Vector2(352, 224)
 [node name="Platform08" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(384, 224)
 
-[node name="Platform09" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(656, 376)
-
-[node name="Platform10" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(624, 376)
-
-[node name="Platform11" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(560, 376)
-
-[node name="Platform12" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(592, 376)
-
 [node name="Platform13" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(288, 224)
 
@@ -66,18 +54,6 @@ position = Vector2(320, 224)
 [node name="Platform16" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(48, 72)
 
-[node name="Platform17" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(688, 376)
-
-[node name="Platform18" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(720, 376)
-
-[node name="Platform19" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(752, 376)
-
-[node name="Platform25" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(576, 224)
-
 [node name="Platform26" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(544, 224)
 
@@ -86,9 +62,6 @@ position = Vector2(480, 224)
 
 [node name="Platform28" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(512, 224)
-
-[node name="Platform29" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(224, 224)
 
 [node name="Platform30" parent="Platforms" instance=ExtResource("4_j6lu3")]
 position = Vector2(256, 224)
@@ -133,10 +106,10 @@ position = Vector2(720, 72)
 position = Vector2(752, 72)
 
 [node name="Platform" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(224, 376)
+position = Vector2(192, 376)
 
 [node name="Platform2" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(96, 376)
+position = Vector2(608, 376)
 
 [node name="Boundaries" type="Node" parent="."]
 
