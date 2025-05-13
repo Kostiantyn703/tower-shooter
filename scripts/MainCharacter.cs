@@ -462,6 +462,22 @@ public partial class MainCharacter : CharacterBody2D
                     LaserPointer.Position = new Vector2(-3, 0);
                 }
 				break;
+			case AimDirection.AD_RIGHT_45:
+				LaserPointer.RotationDegrees = -45;
+				LaserPointer.Position = new Vector2(6, -9);
+				break;
+			case AimDirection.AD_RIGHT_135:
+				LaserPointer.RotationDegrees = 45;
+				LaserPointer.Position = new Vector2(-6, 5);
+				break;
+			case AimDirection.AD_LEFT_45:
+                LaserPointer.RotationDegrees = -135;
+                LaserPointer.Position = new Vector2(6, -19);
+				break;
+			case AimDirection.AD_LEFT_135:
+                LaserPointer.RotationDegrees = 135;
+                LaserPointer.Position = new Vector2(-6, -6);
+				break;
 		}
 	}
 }
