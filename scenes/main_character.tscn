@@ -260,6 +260,12 @@ script = ExtResource("1_g2mf5")
 JumpVelocity = -600
 metadata/_edit_group_ = true
 
+[node name="LaserPointer" type="Line2D" parent="."]
+points = PackedVector2Array(0, -8, 30.2287, -8, 174.667, -8)
+closed = true
+width = 1.0
+default_color = Color(0.773856, 7.70092e-07, 5.77569e-07, 1)
+
 [node name="MovementAnim" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, 8)
@@ -269,7 +275,7 @@ offset = Vector2(0, -8)
 
 [node name="IdleAnim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nayhv")
-animation = &"aim_135"
+animation = &"aim_down"
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

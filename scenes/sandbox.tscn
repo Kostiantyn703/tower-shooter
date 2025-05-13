@@ -26,8 +26,6 @@ position = Vector2(400, 300)
 scale = Vector2(2, 2)
 texture = ExtResource("3_a8pr3")
 
-[node name="MainCharacter" parent="." instance=ExtResource("2_a8pr3")]
-
 [node name="InitialPlayerPosition" type="Marker2D" parent="."]
 position = Vector2(400, 300)
 
@@ -110,6 +108,8 @@ position = Vector2(192, 376)
 
 [node name="Platform2" parent="Platforms" instance=ExtResource("5_uk5io")]
 position = Vector2(608, 376)
+
+[node name="MainCharacter" parent="." instance=ExtResource("2_a8pr3")]
 
 [node name="Boundaries" type="Node" parent="."]
 

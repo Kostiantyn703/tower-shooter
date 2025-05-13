@@ -324,7 +324,9 @@ public partial class MainCharacter : CharacterBody2D
 	private bool IsHold = false;
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	private Vector2 InputDirection = Vector2.Zero;
-	
+
+	private Line2D LaserPointer = null;
+
 	CharacterStateMachine StateMachine = null;
 	AnimationHandler AnimHandler = null;
 	
@@ -336,9 +338,11 @@ public partial class MainCharacter : CharacterBody2D
 		AnimatedSprite2D sprite = GetNode<AnimatedSprite2D>("MovementAnim");
 		AnimHandler.Init(sprite);
 		PlatformOnLeave = PlatformOnLeaveEnum.DoNothing;
-	}
-	
-	public override void _PhysicsProcess(double delta)
+
+		LaserPointer = GetNode<Line2D>("LaserPointer");
+    }
+
+    public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 		
@@ -353,11 +357,21 @@ public partial class MainCharacter : CharacterBody2D
 		{
 			AnimHandler.OnStateChange(this, StateMachine.CurrentState, StateMachine.AimDir);
 			AnimHandler.HandleAnimation(StateMachine.CurrentState, StateMachine.AimDir);
+			if (StateMachine.CurrentState.GetName() == "air")
+			{
+                // no shooting during air
+				LaserPointer.Visible = false;
+            }
+			else
+			{
+				LaserPointer.Visible = true;
+            }
 		}
 		if (StateMachine.ChangeAimDirection(InputDirection))
 		{
 			AnimHandler.OnAimDirectionChange(StateMachine.CurrentState, StateMachine.AimDir);
 			AnimHandler.HandleAnimation(StateMachine.CurrentState, StateMachine.AimDir);
+			ChangeLaserPointerDirection(StateMachine.AimDir);
 		}
 		MoveAndSlide();
     }
@@ -414,4 +428,40 @@ public partial class MainCharacter : CharacterBody2D
             InputDirection.X = -1;
         }
     }
+	private void ChangeLaserPointerDirection(AimDirection aimDirection)
+	{
+        switch (aimDirection)
+		{
+			case AimDirection.AD_RIGHT:
+				LaserPointer.RotationDegrees = 0;
+				LaserPointer.Position = new Vector2(0, 0);
+				break;
+			case AimDirection.AD_LEFT:
+				LaserPointer.RotationDegrees = 180;
+                LaserPointer.Position = new Vector2(0, -16);
+                break;
+			case AimDirection.AD_UP:
+                LaserPointer.RotationDegrees = 270;
+				if (!AnimHandler.CurrentSprite.FlipH)
+				{
+                    LaserPointer.Position = new Vector2(6, -10);
+                }
+				else
+				{
+                    LaserPointer.Position = new Vector2(10, -10);
+                }
+                break;
+			case AimDirection.AD_DOWN:
+				LaserPointer.RotationDegrees = 90;
+				if (!AnimHandler.CurrentSprite.FlipH)
+				{
+                    LaserPointer.Position = new Vector2(-13, 0);
+                }
+				else
+				{
+                    LaserPointer.Position = new Vector2(-3, 0);
+                }
+				break;
+		}
+	}
 }
