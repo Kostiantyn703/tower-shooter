@@ -252,7 +252,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ke236"]
-size = Vector2(21.3333, 36)
+size = Vector2(21.3333, 38.6667)
 
 [node name="MainCharacter" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -261,6 +261,7 @@ JumpVelocity = -600
 metadata/_edit_group_ = true
 
 [node name="MovementAnim" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_hodpe")
 animation = &"run"
@@ -272,7 +273,7 @@ animation = &"aim_135"
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 0.666666)
 shape = SubResource("RectangleShape2D_ke236")
 
 [node name="Camera" type="Camera2D" parent="."]

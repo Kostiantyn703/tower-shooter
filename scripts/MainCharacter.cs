@@ -50,18 +50,18 @@ class CharacterStateMachine
 		CurrentState = new IdleState();
 	}
 	
-	public bool ChangeState(Vector2 velocity, Vector2 direction, bool isHold, bool isOnFloor)
+	public bool ChangeState(Vector2 velocity, bool isHold, bool isOnFloor)
 	{
 		CharacterState newState = null;
 		if (isHold && isOnFloor)
 		{
             newState = new HoldState();
         }
-		else if (isOnFloor && velocity.Length() == 0 && direction.Length() == 0)
+		else if (isOnFloor && velocity.Length() == 0)
 		{
 			newState = new IdleState();
 		}
-		else if (velocity.X != 0 && direction.X != 0 && velocity.Y == 0)
+		else if (velocity.X != 0 && velocity.Y == 0)
 		{
 			newState = new MoveState();
 		}
@@ -347,10 +347,9 @@ public partial class MainCharacter : CharacterBody2D
 		{
 			velocity.Y += gravity * (float)delta;
 		}
-
         ProcessInput(ref velocity);
         Velocity = velocity;
-		if (StateMachine.ChangeState(Velocity, InputDirection, IsHold, IsOnFloor()))
+		if (StateMachine.ChangeState(Velocity, IsHold, IsOnFloor()))
 		{
 			AnimHandler.OnStateChange(this, StateMachine.CurrentState, StateMachine.AimDir);
 			AnimHandler.HandleAnimation(StateMachine.CurrentState, StateMachine.AimDir);
