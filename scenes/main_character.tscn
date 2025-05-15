@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c2spl7ttdqrnh"]
+[gd_scene load_steps=37 format=3 uid="uid://c2spl7ttdqrnh"]
 
 [ext_resource type="Script" path="res://scripts/MainCharacter.cs" id="1_g2mf5"]
 [ext_resource type="Texture2D" uid="uid://22ge0h5lvxvh" path="res://content/anims/player/idle/idle01.png" id="2_0d0nc"]
@@ -27,9 +27,6 @@ region = Rect2(58, 0, 28, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvjf6"]
 atlas = ExtResource("2_ogw1n")
 region = Rect2(87, 0, 28, 28)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k0aba"]
-load_path = "res://.godot/imported/lay_down.png-0277a6b57b17371f6f05b2fea38a9d56.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8rh4e"]
 atlas = ExtResource("3_d3a2h")
@@ -121,14 +118,6 @@ animations = [{
 "loop": true,
 "name": &"air",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_k0aba")
-}],
-"loop": true,
-"name": &"lay_down",
-"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -267,15 +256,16 @@ width = 1.0
 default_color = Color(0.772549, 0, 0, 0.509804)
 
 [node name="MovementAnim" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_hodpe")
-animation = &"run"
+animation = &"run_aim_45"
+frame_progress = 0.930244
 offset = Vector2(0, -8)
 
 [node name="IdleAnim" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_nayhv")
-animation = &"idle"
+animation = &"aim_down"
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
