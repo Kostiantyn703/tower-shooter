@@ -259,11 +259,10 @@ default_color = Color(0.772549, 0, 0, 0.509804)
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_hodpe")
 animation = &"run_aim_45"
-frame_progress = 0.930244
+frame_progress = 0.425435
 offset = Vector2(0, -8)
 
 [node name="IdleAnim" type="AnimatedSprite2D" parent="."]
-visible = false
 sprite_frames = SubResource("SpriteFrames_nayhv")
 animation = &"aim_down"
 offset = Vector2(0, -8)

@@ -61,6 +61,7 @@ class CharacterStateMachine
 {
 	public CharacterState CurrentState = null;
 	public AimDirection AimDir = AimDirection.AD_RIGHT;
+	public AimDirection PreviousHorizontalAimDir = AimDirection.AD_RIGHT;
 	
 	public void Init()
 	{
@@ -97,17 +98,20 @@ class CharacterStateMachine
 	
 	public bool ChangeAimDirection(Vector2 direction)
 	{
+		bool result = false;
 		AimDirection newAimDir = AimDirection.AD_NONE;
 		
 		if (direction.X > 0 && direction.Y == 0)
 		{
-			newAimDir = AimDirection.AD_RIGHT; 
-		}
+			newAimDir = AimDirection.AD_RIGHT;
+			PreviousHorizontalAimDir = newAimDir;
+        }
 		if (direction.X < 0 && direction.Y == 0)
 		{
 			newAimDir = AimDirection.AD_LEFT;
-		}
-		if (direction.X > 0 && direction.Y < 0)
+            PreviousHorizontalAimDir = newAimDir;
+        }
+        if (direction.X > 0 && direction.Y < 0)
 		{
 			newAimDir = AimDirection.AD_RIGHT_45;
 		}
@@ -135,9 +139,14 @@ class CharacterStateMachine
 		if (AimDir != newAimDir)
 		{
 			AimDir = newAimDir;
-			return true;
+            result = true;
+        }
+        if (AimDir == AimDirection.AD_NONE)
+		{
+			AimDir = PreviousHorizontalAimDir;
+			result = true;
 		}
-		return false;
+		return result;
 	}
 	
 	public void LogCurrentState()
