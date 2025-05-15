@@ -1,14 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://lcuswrxjlw1n"]
+[gd_scene load_steps=16 format=3 uid="uid://lcuswrxjlw1n"]
 
 [ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/environment/background.png" id="3_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://clb3dc5t2xqgh" path="res://content/environment/wall01.png" id="3_vbowh"]
+[ext_resource type="PackedScene" uid="uid://cvpy2pcikg123" path="res://scenes/platform.tscn" id="4_j6lu3"]
 [ext_resource type="PackedScene" uid="uid://x2hkeawq7bl2" path="res://scenes/platform_big.tscn" id="5_f8xsr"]
 [ext_resource type="Texture2D" uid="uid://o6c5ey11xdpk" path="res://content/environment/floor01.png" id="5_ipmjo"]
 [ext_resource type="PackedScene" uid="uid://b3a285u6o3g1q" path="res://scenes/platform6.tscn" id="5_uk5io"]
 [ext_resource type="Texture2D" uid="uid://dbx6y23rtktyv" path="res://content/environment/floor02.png" id="6_w24sq"]
 [ext_resource type="PackedScene" uid="uid://e36lgky2maf" path="res://scenes/platform2.tscn" id="9_camxl"]
+[ext_resource type="PackedScene" uid="uid://kun6ie6f044n" path="res://scenes/shotgun.tscn" id="11_o0x3l"]
+[ext_resource type="PackedScene" uid="uid://c57ugpwtineq4" path="res://scenes/mahine_gun.tscn" id="12_soy8q"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rgld7"]
 distance = -12.0
@@ -46,6 +49,18 @@ position = Vector2(704, 72)
 
 [node name="Platform3" parent="Platforms" instance=ExtResource("5_uk5io")]
 position = Vector2(96, 72)
+
+[node name="Platform5" parent="Platforms" instance=ExtResource("9_camxl")]
+position = Vector2(400, 72)
+
+[node name="Platform6" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(224, -88)
+
+[node name="Platform7" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(384, -152)
+
+[node name="Platform8" parent="Platforms" instance=ExtResource("4_j6lu3")]
+position = Vector2(168, -272)
 
 [node name="MainCharacter" parent="." instance=ExtResource("2_a8pr3")]
 
@@ -96,5 +111,10 @@ position = Vector2(16, 24)
 scale = Vector2(2, 2)
 texture = ExtResource("3_vbowh")
 
-[node name="PlatformSide" parent="." instance=ExtResource("9_camxl")]
-position = Vector2(400, 72)
+[node name="PickUps" type="Node" parent="."]
+
+[node name="Shotgun" parent="PickUps" instance=ExtResource("11_o0x3l")]
+position = Vector2(192, 352)
+
+[node name="MahineGun" parent="PickUps" instance=ExtResource("12_soy8q")]
+position = Vector2(608, 352)

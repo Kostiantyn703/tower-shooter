@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://kun6ie6f044n"]
+
+[ext_resource type="Texture2D" uid="uid://cnuw0bak3jtmo" path="res://content/pick_ups/shotgun.png" id="1_i0ah4"]
+
+[node name="Shotgun" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_i0ah4")

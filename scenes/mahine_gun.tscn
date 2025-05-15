@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c57ugpwtineq4"]
+
+[ext_resource type="Texture2D" uid="uid://cav4pei0gy7vi" path="res://content/pick_ups/machine_gun.png" id="1_7c3vp"]
+
+[node name="MahineGun" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_7c3vp")
