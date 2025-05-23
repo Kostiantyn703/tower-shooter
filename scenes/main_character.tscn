@@ -249,6 +249,19 @@ script = ExtResource("1_g2mf5")
 JumpVelocity = -600
 metadata/_edit_group_ = true
 
+[node name="HeightLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_top = 20.0
+offset_right = 26.0
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "Height
+"
+horizontal_alignment = 1
+
 [node name="LaserPointer" type="Line2D" parent="."]
 points = PackedVector2Array(0, -8, 174.667, -8)
 closed = true
@@ -259,7 +272,7 @@ default_color = Color(0.772549, 0, 0, 0.509804)
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_hodpe")
 animation = &"run_aim_45"
-frame_progress = 0.425435
+frame_progress = 0.596347
 offset = Vector2(0, -8)
 
 [node name="IdleAnim" type="AnimatedSprite2D" parent="."]
