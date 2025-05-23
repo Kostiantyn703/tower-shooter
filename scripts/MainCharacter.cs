@@ -214,12 +214,10 @@ abstract class CharacterState
 		if (IsAimAllRight(direction))
 		{
 			sprite.FlipH = false;
-			GD.Print("Unflip");
 		}
 		else if (IsAimAllLeft(direction))
 		{
 			sprite.FlipH = true;
-            GD.Print("Flip");
         }
     }
 	

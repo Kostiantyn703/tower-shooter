@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://lcuswrxjlw1n"]
+[gd_scene load_steps=15 format=3 uid="uid://lcuswrxjlw1n"]
 
 [ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/environment/background.png" id="3_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://clb3dc5t2xqgh" path="res://content/environment/wall01.png" id="3_vbowh"]
-[ext_resource type="PackedScene" uid="uid://cvpy2pcikg123" path="res://scenes/platform.tscn" id="4_j6lu3"]
 [ext_resource type="PackedScene" uid="uid://x2hkeawq7bl2" path="res://scenes/platform_big.tscn" id="5_f8xsr"]
 [ext_resource type="Texture2D" uid="uid://o6c5ey11xdpk" path="res://content/environment/floor01.png" id="5_ipmjo"]
 [ext_resource type="PackedScene" uid="uid://b3a285u6o3g1q" path="res://scenes/platform6.tscn" id="5_uk5io"]
@@ -31,7 +30,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_a8pr3")
 
 [node name="InitialPlayerPosition" type="Marker2D" parent="."]
-position = Vector2(400, 300)
+position = Vector2(400, 450)
 
 [node name="Platforms" type="Node" parent="."]
 
@@ -52,30 +51,6 @@ position = Vector2(96, 72)
 
 [node name="Platform5" parent="Platforms" instance=ExtResource("9_camxl")]
 position = Vector2(400, 72)
-
-[node name="Platform6" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(224, -88)
-
-[node name="Platform7" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(384, -152)
-
-[node name="Platform8" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(168, -272)
-
-[node name="PlatformSide" parent="Platforms" instance=ExtResource("9_camxl")]
-position = Vector2(344, -360)
-
-[node name="Platform9" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(560, -488)
-
-[node name="Platform10" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(224, -600)
-
-[node name="StaticBody2D" parent="Platforms" instance=ExtResource("4_j6lu3")]
-position = Vector2(480, -672)
-
-[node name="Platform11" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(224, -800)
 
 [node name="MainCharacter" parent="." instance=ExtResource("2_a8pr3")]
 
