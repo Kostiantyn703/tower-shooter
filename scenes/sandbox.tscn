@@ -34,21 +34,6 @@ position = Vector2(400, 450)
 
 [node name="Platforms" type="Node" parent="."]
 
-[node name="Platform" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(192, 376)
-
-[node name="Platform2" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(608, 376)
-
-[node name="PlatformBig" parent="Platforms" instance=ExtResource("5_f8xsr")]
-position = Vector2(400, 224)
-
-[node name="Platform4" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(704, 72)
-
-[node name="Platform3" parent="Platforms" instance=ExtResource("5_uk5io")]
-position = Vector2(96, 72)
-
 [node name="Platform5" parent="Platforms" instance=ExtResource("9_camxl")]
 position = Vector2(400, 72)
 
@@ -76,21 +61,6 @@ position = Vector2(736, 0)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_j6lu3")
 
-[node name="Floor" type="Sprite2D" parent="."]
-position = Vector2(400, 520)
-scale = Vector2(0.92, 1)
-texture = ExtResource("6_w24sq")
-
-[node name="Underground01" type="Sprite2D" parent="."]
-position = Vector2(400, 552)
-scale = Vector2(0.92, 1)
-texture = ExtResource("5_ipmjo")
-
-[node name="Underground02" type="Sprite2D" parent="."]
-position = Vector2(400, 600)
-scale = Vector2(0.92, 1)
-texture = ExtResource("5_ipmjo")
-
 [node name="WallLeft" type="Sprite2D" parent="."]
 position = Vector2(784, 24)
 scale = Vector2(2, 2)
@@ -101,10 +71,42 @@ position = Vector2(16, 24)
 scale = Vector2(2, 2)
 texture = ExtResource("3_vbowh")
 
-[node name="PickUps" type="Node" parent="."]
+[node name="Hub" type="Node" parent="."]
 
-[node name="Shotgun" parent="PickUps" instance=ExtResource("11_o0x3l")]
+[node name="PickUps" type="Node" parent="Hub"]
+
+[node name="Shotgun" parent="Hub/PickUps" instance=ExtResource("11_o0x3l")]
 position = Vector2(192, 352)
 
-[node name="MahineGun" parent="PickUps" instance=ExtResource("12_soy8q")]
+[node name="MahineGun" parent="Hub/PickUps" instance=ExtResource("12_soy8q")]
 position = Vector2(608, 352)
+
+[node name="Platform" parent="Hub" instance=ExtResource("5_uk5io")]
+position = Vector2(192, 376)
+
+[node name="Platform2" parent="Hub" instance=ExtResource("5_uk5io")]
+position = Vector2(608, 376)
+
+[node name="PlatformBig" parent="Hub" instance=ExtResource("5_f8xsr")]
+position = Vector2(400, 224)
+
+[node name="Platform4" parent="Hub" instance=ExtResource("5_uk5io")]
+position = Vector2(704, 72)
+
+[node name="Platform3" parent="Hub" instance=ExtResource("5_uk5io")]
+position = Vector2(96, 72)
+
+[node name="Floor" type="Sprite2D" parent="Hub"]
+position = Vector2(400, 520)
+scale = Vector2(0.92, 1)
+texture = ExtResource("6_w24sq")
+
+[node name="Underground01" type="Sprite2D" parent="Hub"]
+position = Vector2(400, 552)
+scale = Vector2(0.92, 1)
+texture = ExtResource("5_ipmjo")
+
+[node name="Underground02" type="Sprite2D" parent="Hub"]
+position = Vector2(400, 600)
+scale = Vector2(0.92, 1)
+texture = ExtResource("5_ipmjo")
