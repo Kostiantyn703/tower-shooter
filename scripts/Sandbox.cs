@@ -15,7 +15,7 @@ public class PlatformSpawner
 	}
 	public void SpawnPlatform(Vector2 position)
 	{
-		PackedScene platformScene = GD.Load<PackedScene>("res://scenes//platform6.tscn");
+		PackedScene platformScene = GD.Load<PackedScene>("res://scenes//platform_big.tscn");
 		Node2D platformInstance = (Node2D)platformScene.Instantiate();
 		platformInstance.Position = position;
 		PlatformLayer.AddChild(platformInstance);
