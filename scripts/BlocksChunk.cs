@@ -12,7 +12,7 @@ public enum BlockType
 public partial class BlocksChunk : Node
 {
     const int BlockSideSize = 32; // according to block sprite 
-    const int GridSideSize = 24;
+    const int GridSideSize = 25;
     Array<BlockType> Grid = new Array<BlockType>();
 
     private void FillGrid()
@@ -27,9 +27,6 @@ public partial class BlocksChunk : Node
     }
     private void GenerateLevel()
     {
-        //int currentRowIdx = 0;
-        //int currentColumnIdx = 0;
-
         for (int i = 0; i < Grid.Count; i++)
         {
             if (Grid[i] == BlockType.BT_FILLED)
