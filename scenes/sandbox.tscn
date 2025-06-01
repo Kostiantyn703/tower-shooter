@@ -1,19 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://lcuswrxjlw1n"]
+[gd_scene load_steps=9 format=3 uid="uid://lcuswrxjlw1n"]
 
 [ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/environment/background.png" id="3_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://clb3dc5t2xqgh" path="res://content/environment/wall01.png" id="3_vbowh"]
-[ext_resource type="PackedScene" uid="uid://x2hkeawq7bl2" path="res://scenes/platform_big.tscn" id="5_f8xsr"]
-[ext_resource type="Texture2D" uid="uid://o6c5ey11xdpk" path="res://content/environment/floor01.png" id="5_ipmjo"]
-[ext_resource type="PackedScene" uid="uid://b3a285u6o3g1q" path="res://scenes/platform6.tscn" id="5_uk5io"]
-[ext_resource type="Texture2D" uid="uid://dbx6y23rtktyv" path="res://content/environment/floor02.png" id="6_w24sq"]
-[ext_resource type="PackedScene" uid="uid://e36lgky2maf" path="res://scenes/platform2.tscn" id="9_camxl"]
-[ext_resource type="PackedScene" uid="uid://kun6ie6f044n" path="res://scenes/shotgun.tscn" id="11_o0x3l"]
-[ext_resource type="PackedScene" uid="uid://c57ugpwtineq4" path="res://scenes/mahine_gun.tscn" id="12_soy8q"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rgld7"]
-distance = -12.0
+[ext_resource type="PackedScene" uid="uid://bdtjloljclcgs" path="res://scenes/chunks/BlocksChunk.tscn" id="6_qn6f5"]
+[ext_resource type="PackedScene" uid="uid://iimjsl462r3q" path="res://scenes/chunks/hub.tscn" id="7_kca0t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a8pr3"]
 distance = -20.0
@@ -34,18 +26,7 @@ position = Vector2(400, 450)
 
 [node name="Platforms" type="Node" parent="."]
 
-[node name="Platform5" parent="Platforms" instance=ExtResource("9_camxl")]
-position = Vector2(400, 72)
-
-[node name="MainCharacter" parent="." instance=ExtResource("2_a8pr3")]
-
 [node name="Boundaries" type="Node" parent="."]
-
-[node name="Ground" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(400, 500)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Ground"]
-shape = SubResource("WorldBoundaryShape2D_rgld7")
 
 [node name="LeftWall" type="StaticBody2D" parent="Boundaries"]
 
@@ -61,52 +42,19 @@ position = Vector2(736, 0)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_j6lu3")
 
-[node name="WallLeft" type="Sprite2D" parent="."]
-position = Vector2(784, 24)
-scale = Vector2(2, 2)
-texture = ExtResource("3_vbowh")
+[node name="Hub" parent="." instance=ExtResource("7_kca0t")]
+
+[node name="MainCharacter" parent="." instance=ExtResource("2_a8pr3")]
 
 [node name="WallRight" type="Sprite2D" parent="."]
 position = Vector2(16, 24)
 scale = Vector2(2, 2)
 texture = ExtResource("3_vbowh")
 
-[node name="Hub" type="Node" parent="."]
+[node name="WallLeft" type="Sprite2D" parent="."]
+position = Vector2(784, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("3_vbowh")
 
-[node name="PickUps" type="Node" parent="Hub"]
-
-[node name="Shotgun" parent="Hub/PickUps" instance=ExtResource("11_o0x3l")]
-position = Vector2(192, 352)
-
-[node name="MahineGun" parent="Hub/PickUps" instance=ExtResource("12_soy8q")]
-position = Vector2(608, 352)
-
-[node name="Platform" parent="Hub" instance=ExtResource("5_uk5io")]
-position = Vector2(192, 376)
-
-[node name="Platform2" parent="Hub" instance=ExtResource("5_uk5io")]
-position = Vector2(608, 376)
-
-[node name="PlatformBig" parent="Hub" instance=ExtResource("5_f8xsr")]
-position = Vector2(400, 224)
-
-[node name="Platform4" parent="Hub" instance=ExtResource("5_uk5io")]
-position = Vector2(704, 72)
-
-[node name="Platform3" parent="Hub" instance=ExtResource("5_uk5io")]
-position = Vector2(96, 72)
-
-[node name="Floor" type="Sprite2D" parent="Hub"]
-position = Vector2(400, 520)
-scale = Vector2(0.92, 1)
-texture = ExtResource("6_w24sq")
-
-[node name="Underground01" type="Sprite2D" parent="Hub"]
-position = Vector2(400, 552)
-scale = Vector2(0.92, 1)
-texture = ExtResource("5_ipmjo")
-
-[node name="Underground02" type="Sprite2D" parent="Hub"]
-position = Vector2(400, 600)
-scale = Vector2(0.92, 1)
-texture = ExtResource("5_ipmjo")
+[node name="BlocksChunk" parent="." instance=ExtResource("6_qn6f5")]
+position = Vector2(16, 0)

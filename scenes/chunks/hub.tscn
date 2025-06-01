@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://iimjsl462r3q"]
+
+[ext_resource type="PackedScene" uid="uid://b3a285u6o3g1q" path="res://scenes/platform6.tscn" id="1_6mvmm"]
+[ext_resource type="PackedScene" uid="uid://x2hkeawq7bl2" path="res://scenes/platform_big.tscn" id="2_ydda8"]
+[ext_resource type="Texture2D" uid="uid://o6c5ey11xdpk" path="res://content/environment/floor01.png" id="3_yqe7l"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_do6k8"]
+
+[node name="Hub" type="Node2D"]
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("1_6mvmm")]
+position = Vector2(176, 392)
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("1_6mvmm")]
+position = Vector2(624, 392)
+
+[node name="PlatformBig" parent="Platforms" instance=ExtResource("2_ydda8")]
+position = Vector2(400, 232)
+
+[node name="PlatformBig2" parent="Platforms" instance=ExtResource("2_ydda8")]
+position = Vector2(128, 112)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(400, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0, 4)
+shape = SubResource("WorldBoundaryShape2D_do6k8")
+
+[node name="FloorSprite01" type="Sprite2D" parent="."]
+position = Vector2(400, 528)
+texture = ExtResource("3_yqe7l")
+
+[node name="FloorSprite02" type="Sprite2D" parent="."]
+position = Vector2(400, 576)
+texture = ExtResource("3_yqe7l")

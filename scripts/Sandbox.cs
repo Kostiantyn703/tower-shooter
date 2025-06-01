@@ -61,10 +61,10 @@ public partial class Sandbox : Node
 		Camera = Player.GetNode<Camera2D>("Camera");
         Background = GetNode<Sprite2D>("Background");
 
-        LowestBorder = GetNode<Node>("Boundaries").GetNode<StaticBody2D>("Ground").Position.Y;
+        //LowestBorder = GetNode<Node>("Boundaries").GetNode<StaticBody2D>("Ground").Position.Y;
 
-        Platforms = new PlatformSpawner();
-		Platforms.Init(GetNode<Node>("Platforms"));
+		//Platforms = new PlatformSpawner();
+		//Platforms.Init(GetNode<Node>("Platforms"));
     }
 
     public override void _Process(double delta)
@@ -82,11 +82,11 @@ public partial class Sandbox : Node
 		Background.GlobalPosition = backgroundGlobalPos;
 
 		UpdateHeightCounter();
-		if (Platforms.ShouldSpawnPlatform(Player.Position.Y))
-		{
-			Vector2 spawnPosition = Platforms.CalculateSpawnPosition(Player.Position.X);
-			Platforms.SpawnPlatform(spawnPosition);
-        }
+		//if (Platforms.ShouldSpawnPlatform(Player.Position.Y))
+		//{
+		//	Vector2 spawnPosition = Platforms.CalculateSpawnPosition(Player.Position.X);
+		//	Platforms.SpawnPlatform(spawnPosition);
+  //      }
     }
 
 	private void UpdateHeightCounter()
