@@ -24,6 +24,7 @@ position = Vector2(128, 112)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(400, 500)
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(0, 4)
