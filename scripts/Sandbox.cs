@@ -3,7 +3,6 @@ using System;
 
 public partial class Sandbox : Node2D
 {
-    float BackgroundLowBound = 300;
     float HeightCounter = 0;
     float LowestBorder = 0;
 
@@ -36,16 +35,6 @@ public partial class Sandbox : Node2D
 
     public override void _Process(double delta)
     {
-		Vector2 backgroundGlobalPos = Background.GlobalPosition;
-        
-		if (Camera.GlobalPosition.Y > BackgroundLowBound)
-		{
-            backgroundGlobalPos.Y = BackgroundLowBound;
-        }
-		else
-		{
-            backgroundGlobalPos.Y = Camera.GlobalPosition.Y;
-        }
-		Background.GlobalPosition = backgroundGlobalPos;
+		Background.GlobalPosition = Camera.GlobalPosition;
     }
 }
