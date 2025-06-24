@@ -245,22 +245,10 @@ size = Vector2(21.3333, 38.6667)
 
 [node name="MainCharacter" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
+collision_layer = 3
 script = ExtResource("1_g2mf5")
 JumpVelocity = -600
 metadata/_edit_group_ = true
-
-[node name="HeightLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -26.0
-offset_top = 20.0
-offset_right = 26.0
-offset_bottom = 43.0
-grow_horizontal = 2
-text = "Height
-"
-horizontal_alignment = 1
 
 [node name="LaserPointer" type="Line2D" parent="."]
 points = PackedVector2Array(0, -8, 174.667, -8)
@@ -285,7 +273,3 @@ position = Vector2(0, 0.666666)
 shape = SubResource("RectangleShape2D_ke236")
 
 [node name="Camera" type="Camera2D" parent="."]
-limit_left = 0
-limit_top = -1000000
-limit_right = 800
-limit_bottom = 600

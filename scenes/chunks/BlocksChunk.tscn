@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdtjloljclcgs"]
+
+[ext_resource type="Script" path="res://scripts/BlocksChunk.cs" id="1_6jilq"]
+
+[node name="BlocksChunk" type="Node2D"]
+script = ExtResource("1_6jilq")
