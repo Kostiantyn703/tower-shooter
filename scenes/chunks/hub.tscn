@@ -25,5 +25,5 @@ position = Vector2(792, 152)
 position = Vector2(400, 528)
 
 [node name="Ceiling01" parent="." instance=ExtResource("4_pwoxs")]
-position = Vector2(400, -8)
+position = Vector2(400, 8)
 scale = Vector2(4, 1)

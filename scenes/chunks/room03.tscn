@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://fvp7tg56u4ep"]
+
+[ext_resource type="PackedScene" uid="uid://c8m0klfywyncd" path="res://scenes/environment/floor01.tscn" id="1_ae78r"]
+[ext_resource type="PackedScene" uid="uid://bm552boax10j0" path="res://scenes/environment/wall01.tscn" id="2_y7vaq"]
+[ext_resource type="PackedScene" uid="uid://bsju1jqepe7wm" path="res://scenes/environment/ceiling01.tscn" id="3_aikm1"]
+
+[node name="Room03" type="Node2D"]
+
+[node name="Floor01" parent="." instance=ExtResource("1_ae78r")]
+position = Vector2(160, 528)
+scale = Vector2(0.4, 1)
+
+[node name="Floor02" parent="." instance=ExtResource("1_ae78r")]
+position = Vector2(640, 528)
+scale = Vector2(0.4, 1)
+
+[node name="Wall" parent="." instance=ExtResource("2_y7vaq")]
+position = Vector2(792, 152)
+
+[node name="Wall2" parent="." instance=ExtResource("2_y7vaq")]
+position = Vector2(8, 152)
+
+[node name="Ceiling01" parent="." instance=ExtResource("3_aikm1")]
+position = Vector2(400, 8)
+scale = Vector2(4, 1)
