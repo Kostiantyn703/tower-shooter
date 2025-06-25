@@ -435,7 +435,7 @@ public partial class MainCharacter : CharacterBody2D
 		
 		if (Input.IsActionJustPressed("jump"))
 		{
-			//if (IsOnFloor())
+			if (IsOnFloor())
 			{
 				velocity.Y = JumpVelocity;
 			}
