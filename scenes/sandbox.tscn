@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://lcuswrxjlw1n"]
+[gd_scene load_steps=10 format=3 uid="uid://lcuswrxjlw1n"]
 
 [ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cnsi0qstadvb5" path="res://scenes/chunks/corridor01.tscn" id="5_uyrkb"]
 [ext_resource type="PackedScene" uid="uid://fmyq85lsn8pl" path="res://scenes/chunks/room01.tscn" id="6_ssvmo"]
 [ext_resource type="PackedScene" uid="uid://iimjsl462r3q" path="res://scenes/chunks/hub.tscn" id="7_kca0t"]
+[ext_resource type="PackedScene" uid="uid://0x26bs4gr1sn" path="res://scenes/chunks/room02.tscn" id="7_mmhwv"]
+[ext_resource type="PackedScene" uid="uid://c7ck04rq1sajb" path="res://scenes/chunks/tunnel01.tscn" id="8_bvvqw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjjl4"]
 radius = 32.9848
@@ -51,5 +53,20 @@ position = Vector2(-1200, 288)
 
 [node name="Room" parent="." instance=ExtResource("6_ssvmo")]
 position = Vector2(-2000, 0)
+
+[node name="Corridor07" parent="." instance=ExtResource("5_uyrkb")]
+position = Vector2(-2200, 288)
+
+[node name="Corridor08" parent="." instance=ExtResource("5_uyrkb")]
+position = Vector2(-2400, 288)
+
+[node name="Room02" parent="." instance=ExtResource("7_mmhwv")]
+position = Vector2(-3200, 0)
+
+[node name="Tunnel01" parent="." instance=ExtResource("8_bvvqw")]
+position = Vector2(-2980, -368)
+
+[node name="Tunnel02" parent="." instance=ExtResource("8_bvvqw")]
+position = Vector2(-2980, -732)
 
 [connection signal="body_entered" from="Teleport" to="." method="_on_teleport_body_entered"]

@@ -6,19 +6,21 @@
 [node name="Tunnel01" type="Node2D"]
 
 [node name="Wall" parent="." instance=ExtResource("1_clj6q")]
-position = Vector2(8, 152)
+position = Vector2(8, 184)
+scale = Vector2(1, 1.2)
 
 [node name="Wall2" parent="." instance=ExtResource("1_clj6q")]
-position = Vector2(352, 152)
+position = Vector2(352, 184)
+scale = Vector2(1, 1.2)
 
 [node name="PlatformSide" parent="." instance=ExtResource("2_he27f")]
-position = Vector2(48, 196)
+position = Vector2(48, 232)
 
 [node name="PlatformSide2" parent="." instance=ExtResource("2_he27f")]
-position = Vector2(312, 100)
+position = Vector2(312, 128)
 
 [node name="PlatformSide3" parent="." instance=ExtResource("2_he27f")]
-position = Vector2(48, 8)
+position = Vector2(48, 48)
 
 [node name="PlatformSide4" parent="." instance=ExtResource("2_he27f")]
-position = Vector2(312, 296)
+position = Vector2(312, 328)
