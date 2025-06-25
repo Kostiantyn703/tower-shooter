@@ -3,23 +3,12 @@ using System;
 
 public partial class Sandbox : Node2D
 {
-    float HeightCounter = 0;
-    float LowestBorder = 0;
+    float LowestBorder = 300;
 
     Camera2D Camera = null;
     Sprite2D Background = null;
 
     CharacterBody2D Player = null;
-
-    [Signal]
-    public delegate void TeleportEventHandler();
-
-    private void OnTeleportBodyEntered(Node2D body)
-    {
-        Vector2 teleportPos = GetNode<BlocksChunk>("BlocksChunk").PlayerStart;
-        Player.Position = teleportPos;
-        GD.Print("Enter teleport");
-    }
 
     public override void _Ready()
 	{
@@ -29,12 +18,15 @@ public partial class Sandbox : Node2D
 		Player.Position = StartPosition;
 		Camera = Player.GetNode<Camera2D>("Camera");
         Background = GetNode<Sprite2D>("Background");
-
-        GetNode<Area2D>("Teleport").BodyEntered += OnTeleportBodyEntered;
     }
 
     public override void _Process(double delta)
     {
 		Background.GlobalPosition = Camera.GlobalPosition;
+        if (Camera.GlobalPosition.Y > LowestBorder)
+        {
+            Vector2 lowest = new Vector2(Camera.GlobalPosition.X, LowestBorder);
+            Camera.GlobalPosition = lowest;
+        }
     }
 }

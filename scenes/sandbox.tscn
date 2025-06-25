@@ -1,16 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://lcuswrxjlw1n"]
+[gd_scene load_steps=8 format=3 uid="uid://lcuswrxjlw1n"]
 
 [ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/environment/background.png" id="3_a8pr3"]
 [ext_resource type="PackedScene" uid="uid://cnsi0qstadvb5" path="res://scenes/chunks/corridor01.tscn" id="5_uyrkb"]
+[ext_resource type="PackedScene" uid="uid://fmyq85lsn8pl" path="res://scenes/chunks/room01.tscn" id="6_ssvmo"]
 [ext_resource type="PackedScene" uid="uid://iimjsl462r3q" path="res://scenes/chunks/hub.tscn" id="7_kca0t"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a8pr3"]
-distance = -20.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j6lu3"]
-distance = -18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjjl4"]
 radius = 32.9848
@@ -25,24 +20,6 @@ texture = ExtResource("3_a8pr3")
 
 [node name="InitialPlayerPosition" type="Marker2D" parent="."]
 position = Vector2(392, 300)
-
-[node name="Boundaries" type="Node" parent="."]
-
-[node name="LeftWall" type="StaticBody2D" parent="Boundaries"]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftWall"]
-position = Vector2(64, 0)
-rotation = 1.5708
-shape = SubResource("WorldBoundaryShape2D_a8pr3")
-
-[node name="RightWall" type="StaticBody2D" parent="Boundaries"]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightWall"]
-position = Vector2(736, 0)
-rotation = -1.5708
-shape = SubResource("WorldBoundaryShape2D_j6lu3")
 
 [node name="Hub" parent="." instance=ExtResource("7_kca0t")]
 
@@ -71,5 +48,8 @@ position = Vector2(-1000, 288)
 
 [node name="Corridor06" parent="." instance=ExtResource("5_uyrkb")]
 position = Vector2(-1200, 288)
+
+[node name="Room" parent="." instance=ExtResource("6_ssvmo")]
+position = Vector2(-2000, 0)
 
 [connection signal="body_entered" from="Teleport" to="." method="_on_teleport_body_entered"]
