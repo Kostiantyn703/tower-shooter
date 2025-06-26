@@ -6,6 +6,7 @@
 [node name="CornerLowerRight" type="Node2D"]
 
 [node name="Wall01" parent="." instance=ExtResource("1_u0v0y")]
+position = Vector2(168, 0)
 
 [node name="Floor01" parent="." instance=ExtResource("2_tyofk")]
 position = Vector2(0, 168)

@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://iimjsl462r3q"]
+
+[ext_resource type="PackedScene" uid="uid://1toj61fsld02" path="res://scenes/chunks/corner_upper_left.tscn" id="1_yia7l"]
+[ext_resource type="PackedScene" uid="uid://8pnswhht7xyg" path="res://scenes/chunks/ceiling.tscn" id="2_imjhf"]
+[ext_resource type="PackedScene" uid="uid://c3riy56qumwk7" path="res://scenes/chunks/corner_upper_right.tscn" id="3_ujnaa"]
+[ext_resource type="PackedScene" uid="uid://cai5nkccf85y7" path="res://scenes/chunks/wall_left.tscn" id="4_er2we"]
+[ext_resource type="PackedScene" uid="uid://se4ghfrl14v4" path="res://scenes/chunks/corner_lower_left.tscn" id="5_w0b60"]
+[ext_resource type="PackedScene" uid="uid://cocnoi4srnhfs" path="res://scenes/chunks/floor.tscn" id="6_na88j"]
+[ext_resource type="PackedScene" uid="uid://dxha5npbgmgyn" path="res://scenes/chunks/wall_right.tscn" id="8_70b8u"]
+
+[node name="Hub" type="Node2D"]
+
+[node name="CornerUpperLeft" parent="." instance=ExtResource("1_yia7l")]
+
+[node name="Ceiling" parent="." instance=ExtResource("2_imjhf")]
+position = Vector2(200, 0)
+
+[node name="Ceiling2" parent="." instance=ExtResource("2_imjhf")]
+position = Vector2(400, 0)
+
+[node name="CornerUpperRight" parent="." instance=ExtResource("3_ujnaa")]
+position = Vector2(600, 0)
+
+[node name="WallLeft" parent="." instance=ExtResource("4_er2we")]
+position = Vector2(0, 200)
+
+[node name="CornerLowerLeft" parent="." instance=ExtResource("5_w0b60")]
+position = Vector2(0, 400)
+
+[node name="Floor" parent="." instance=ExtResource("6_na88j")]
+position = Vector2(200, 400)
+
+[node name="Floor2" parent="." instance=ExtResource("6_na88j")]
+position = Vector2(400, 400)
+
+[node name="WallRight" parent="." instance=ExtResource("8_70b8u")]
+position = Vector2(600, 200)
+
+[node name="Floor3" parent="." instance=ExtResource("6_na88j")]
+position = Vector2(600, 400)

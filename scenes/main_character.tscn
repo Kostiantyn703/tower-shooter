@@ -247,7 +247,7 @@ size = Vector2(21.3333, 38.6667)
 scale = Vector2(1.5, 1.5)
 collision_layer = 3
 script = ExtResource("1_g2mf5")
-JumpVelocity = -600
+JumpVelocity = -650
 metadata/_edit_group_ = true
 
 [node name="LaserPointer" type="Line2D" parent="."]

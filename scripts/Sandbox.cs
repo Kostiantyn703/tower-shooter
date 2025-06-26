@@ -23,10 +23,5 @@ public partial class Sandbox : Node2D
     public override void _Process(double delta)
     {
 		Background.GlobalPosition = Camera.GlobalPosition;
-        if (Camera.GlobalPosition.Y > LowestBorder)
-        {
-            Vector2 lowest = new Vector2(Camera.GlobalPosition.X, LowestBorder);
-            Camera.GlobalPosition = lowest;
-        }
     }
 }

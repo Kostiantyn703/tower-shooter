@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://fvp7tg56u4ep"]
+
+[ext_resource type="PackedScene" uid="uid://1toj61fsld02" path="res://scenes/chunks/corner_upper_left.tscn" id="1_ka5gf"]
+[ext_resource type="PackedScene" uid="uid://c3riy56qumwk7" path="res://scenes/chunks/corner_upper_right.tscn" id="2_5jrrw"]
+[ext_resource type="PackedScene" uid="uid://cocnoi4srnhfs" path="res://scenes/chunks/floor.tscn" id="3_m4mci"]
+[ext_resource type="PackedScene" uid="uid://t1ts2kbt7it2" path="res://scenes/chunks/corner_lower_right.tscn" id="4_pukib"]
+
+[node name="Room03" type="Node2D"]
+
+[node name="CornerUpperLeft" parent="." instance=ExtResource("1_ka5gf")]
+
+[node name="CornerUpperRight" parent="." instance=ExtResource("2_5jrrw")]
+position = Vector2(400, 0)
+
+[node name="Floor" parent="." instance=ExtResource("3_m4mci")]
+position = Vector2(0, 200)
+
+[node name="Floor2" parent="." instance=ExtResource("3_m4mci")]
+position = Vector2(200, 200)
+
+[node name="CornerLowerRight" parent="." instance=ExtResource("4_pukib")]
+position = Vector2(400, 200)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://buji4rhrc3kwk"]
+
+[ext_resource type="PackedScene" uid="uid://1toj61fsld02" path="res://scenes/chunks/corner_upper_left.tscn" id="1_1ddnf"]
+[ext_resource type="PackedScene" uid="uid://c3riy56qumwk7" path="res://scenes/chunks/corner_upper_right.tscn" id="2_knn02"]
+[ext_resource type="PackedScene" uid="uid://8pnswhht7xyg" path="res://scenes/chunks/ceiling.tscn" id="3_uil2f"]
+[ext_resource type="PackedScene" uid="uid://se4ghfrl14v4" path="res://scenes/chunks/corner_lower_left.tscn" id="4_0gpl7"]
+[ext_resource type="PackedScene" uid="uid://cocnoi4srnhfs" path="res://scenes/chunks/floor.tscn" id="5_4v2px"]
+[ext_resource type="PackedScene" uid="uid://b3a285u6o3g1q" path="res://scenes/environment/platform6.tscn" id="6_y6n3g"]
+
+[node name="FinishRoom" type="Node2D"]
+
+[node name="CornerUpperLeft" parent="." instance=ExtResource("1_1ddnf")]
+
+[node name="CornerUpperRight" parent="." instance=ExtResource("2_knn02")]
+position = Vector2(400, 0)
+
+[node name="Ceiling" parent="." instance=ExtResource("3_uil2f")]
+position = Vector2(200, 0)
+
+[node name="CornerLowerLeft" parent="." instance=ExtResource("4_0gpl7")]
+position = Vector2(0, 200)
+
+[node name="Floor" parent="." instance=ExtResource("5_4v2px")]
+position = Vector2(200, 200)
+
+[node name="Floor2" parent="." instance=ExtResource("5_4v2px")]
+position = Vector2(400, 200)
+
+[node name="Platform" parent="." instance=ExtResource("6_y6n3g")]
+position = Vector2(300, 192)

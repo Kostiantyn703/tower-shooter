@@ -1,17 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://lcuswrxjlw1n"]
+[gd_scene load_steps=12 format=3 uid="uid://lcuswrxjlw1n"]
 
 [ext_resource type="Script" path="res://scripts/Sandbox.cs" id="1_51233"]
 [ext_resource type="PackedScene" uid="uid://c2spl7ttdqrnh" path="res://scenes/main_character.tscn" id="2_a8pr3"]
 [ext_resource type="Texture2D" uid="uid://ddrnu5l735rrd" path="res://content/environment/background.png" id="3_a8pr3"]
 [ext_resource type="PackedScene" uid="uid://cnsi0qstadvb5" path="res://scenes/chunks/corridor01.tscn" id="5_uyrkb"]
-[ext_resource type="PackedScene" uid="uid://fmyq85lsn8pl" path="res://scenes/chunks/room01.tscn" id="6_ssvmo"]
-[ext_resource type="PackedScene" uid="uid://iimjsl462r3q" path="res://scenes/chunks/hub.tscn" id="7_kca0t"]
-[ext_resource type="PackedScene" uid="uid://0x26bs4gr1sn" path="res://scenes/chunks/room02.tscn" id="7_mmhwv"]
+[ext_resource type="PackedScene" uid="uid://fmyq85lsn8pl" path="res://scenes/rooms/room01.tscn" id="6_ssvmo"]
+[ext_resource type="PackedScene" uid="uid://iimjsl462r3q" path="res://scenes/rooms/hub.tscn" id="7_kca0t"]
+[ext_resource type="PackedScene" uid="uid://0x26bs4gr1sn" path="res://scenes/rooms/room02.tscn" id="7_mmhwv"]
 [ext_resource type="PackedScene" uid="uid://c7ck04rq1sajb" path="res://scenes/chunks/tunnel01.tscn" id="8_bvvqw"]
-[ext_resource type="PackedScene" uid="uid://fvp7tg56u4ep" path="res://scenes/chunks/room03.tscn" id="9_4ceqx"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wjjl4"]
-radius = 32.9848
+[ext_resource type="PackedScene" uid="uid://fvp7tg56u4ep" path="res://scenes/rooms/room03.tscn" id="9_4ceqx"]
+[ext_resource type="PackedScene" uid="uid://e36lgky2maf" path="res://scenes/environment/platform2.tscn" id="10_ysaip"]
+[ext_resource type="PackedScene" uid="uid://buji4rhrc3kwk" path="res://scenes/rooms/finish_room.tscn" id="11_cqjws"]
 
 [node name="Sandbox" type="Node2D"]
 script = ExtResource("1_51233")
@@ -28,49 +27,58 @@ position = Vector2(392, 300)
 
 [node name="MainCharacter" parent="." instance=ExtResource("2_a8pr3")]
 
-[node name="Teleport" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleport"]
-position = Vector2(136, 56)
-shape = SubResource("CircleShape2D_wjjl4")
-
 [node name="Corridor01" parent="." instance=ExtResource("5_uyrkb")]
-position = Vector2(-200, 288)
+position = Vector2(1800, 400)
 
 [node name="Corridor02" parent="." instance=ExtResource("5_uyrkb")]
-position = Vector2(-400, 288)
+position = Vector2(1600, 400)
 
 [node name="Corridor03" parent="." instance=ExtResource("5_uyrkb")]
-position = Vector2(-600, 288)
+position = Vector2(1400, 400)
 
 [node name="Corridor04" parent="." instance=ExtResource("5_uyrkb")]
-position = Vector2(-800, 288)
+position = Vector2(1200, 400)
 
 [node name="Corridor05" parent="." instance=ExtResource("5_uyrkb")]
-position = Vector2(-1000, 288)
+position = Vector2(1000, 400)
 
 [node name="Corridor06" parent="." instance=ExtResource("5_uyrkb")]
-position = Vector2(-1200, 288)
+position = Vector2(800, 400)
 
 [node name="Room" parent="." instance=ExtResource("6_ssvmo")]
-position = Vector2(-2000, 0)
+position = Vector2(2000, 200)
 
 [node name="Corridor07" parent="." instance=ExtResource("5_uyrkb")]
-position = Vector2(-2200, 288)
+position = Vector2(2800, 200)
 
 [node name="Corridor08" parent="." instance=ExtResource("5_uyrkb")]
-position = Vector2(-2400, 288)
+position = Vector2(2600, 200)
 
 [node name="Room02" parent="." instance=ExtResource("7_mmhwv")]
-position = Vector2(-3200, 0)
+position = Vector2(3000, -800)
 
 [node name="Tunnel01" parent="." instance=ExtResource("8_bvvqw")]
-position = Vector2(-2980, -368)
+position = Vector2(3200, -200)
 
 [node name="Tunnel02" parent="." instance=ExtResource("8_bvvqw")]
-position = Vector2(-2980, -732)
+position = Vector2(3200, -400)
 
 [node name="Room03" parent="." instance=ExtResource("9_4ceqx")]
-position = Vector2(-3200, -1332)
+position = Vector2(3000, 0)
 
-[connection signal="body_entered" from="Teleport" to="." method="_on_teleport_body_entered"]
+[node name="Temp" type="Node" parent="."]
+
+[node name="PlatformSide" parent="Temp" instance=ExtResource("10_ysaip")]
+position = Vector2(3452, 256)
+
+[node name="PlatformSide2" parent="Temp" instance=ExtResource("10_ysaip")]
+position = Vector2(3300, 112)
+
+[node name="Corridor09" parent="." instance=ExtResource("5_uyrkb")]
+position = Vector2(2800, -600)
+
+[node name="Corridor10" parent="." instance=ExtResource("5_uyrkb")]
+position = Vector2(2600, -600)
+
+[node name="FinishRoom" parent="." instance=ExtResource("11_cqjws")]
+position = Vector2(2000, -800)

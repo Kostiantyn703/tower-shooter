@@ -1,11 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnsi0qstadvb5"]
+[gd_scene load_steps=3 format=3 uid="uid://cnsi0qstadvb5"]
 
-[ext_resource type="PackedScene" uid="uid://bsju1jqepe7wm" path="res://scenes/environment/old/_ceiling01.tscn" id="1_fllsl"]
+[ext_resource type="PackedScene" uid="uid://8pnswhht7xyg" path="res://scenes/chunks/ceiling.tscn" id="1_p418p"]
+[ext_resource type="PackedScene" uid="uid://cocnoi4srnhfs" path="res://scenes/chunks/floor.tscn" id="2_mfvi0"]
 
 [node name="Corridor01" type="Node2D"]
 
-[node name="Ceiling01" parent="." instance=ExtResource("1_fllsl")]
-position = Vector2(100, 8)
+[node name="Ceiling" parent="." instance=ExtResource("1_p418p")]
 
-[node name="Ceiling02" parent="." instance=ExtResource("1_fllsl")]
-position = Vector2(100, 224)
+[node name="Floor" parent="." instance=ExtResource("2_mfvi0")]
