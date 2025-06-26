@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsju1jqepe7wm"]
+[gd_scene load_steps=3 format=3 uid="uid://bdqdtfaro0vp1"]
 
-[ext_resource type="Texture2D" uid="uid://dakdr2bsxi2fi" path="res://content/environment/ceiling_small.png" id="1_l1g6b"]
+[ext_resource type="Texture2D" uid="uid://by28cshp6vth8" path="res://content/environment/ceiling01.png" id="1_m3f23"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qlva"]
-size = Vector2(200, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2mv2"]
+size = Vector2(200, 32)
 
 [node name="Ceiling01" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_l1g6b")
+position = Vector2(100, 16)
+texture = ExtResource("1_m3f23")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_4qlva")
+position = Vector2(100, 16)
+shape = SubResource("RectangleShape2D_c2mv2")

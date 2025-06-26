@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7ck04rq1sajb"]
 
-[ext_resource type="PackedScene" uid="uid://bm552boax10j0" path="res://scenes/environment/wall01.tscn" id="1_clj6q"]
-[ext_resource type="PackedScene" uid="uid://e36lgky2maf" path="res://scenes/platform2.tscn" id="2_he27f"]
+[ext_resource type="PackedScene" uid="uid://bm552boax10j0" path="res://scenes/environment/old/_wall01.tscn" id="1_clj6q"]
+[ext_resource type="PackedScene" uid="uid://e36lgky2maf" path="res://scenes/environment/platform2.tscn" id="2_he27f"]
 
 [node name="Tunnel01" type="Node2D"]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://0x26bs4gr1sn"]
 
-[ext_resource type="PackedScene" uid="uid://c8m0klfywyncd" path="res://scenes/environment/floor01.tscn" id="1_oqho6"]
-[ext_resource type="PackedScene" uid="uid://bm552boax10j0" path="res://scenes/environment/wall01.tscn" id="2_0i7ij"]
-[ext_resource type="PackedScene" uid="uid://x2hkeawq7bl2" path="res://scenes/platform_big.tscn" id="3_v06j3"]
-[ext_resource type="PackedScene" uid="uid://bsju1jqepe7wm" path="res://scenes/environment/ceiling01.tscn" id="4_m12vw"]
-[ext_resource type="PackedScene" uid="uid://b3a285u6o3g1q" path="res://scenes/platform6.tscn" id="5_3f6mt"]
+[ext_resource type="PackedScene" uid="uid://c8m0klfywyncd" path="res://scenes/environment/old/_floor01.tscn" id="1_oqho6"]
+[ext_resource type="PackedScene" uid="uid://bm552boax10j0" path="res://scenes/environment/old/_wall01.tscn" id="2_0i7ij"]
+[ext_resource type="PackedScene" uid="uid://x2hkeawq7bl2" path="res://scenes/environment/platform_big.tscn" id="3_v06j3"]
+[ext_resource type="PackedScene" uid="uid://bsju1jqepe7wm" path="res://scenes/environment/old/_ceiling01.tscn" id="4_m12vw"]
+[ext_resource type="PackedScene" uid="uid://b3a285u6o3g1q" path="res://scenes/environment/platform6.tscn" id="5_3f6mt"]
 
 [node name="Room02" type="Node2D"]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://fvp7tg56u4ep"]
 
-[ext_resource type="PackedScene" uid="uid://c8m0klfywyncd" path="res://scenes/environment/floor01.tscn" id="1_ae78r"]
-[ext_resource type="PackedScene" uid="uid://bm552boax10j0" path="res://scenes/environment/wall01.tscn" id="2_y7vaq"]
-[ext_resource type="PackedScene" uid="uid://bsju1jqepe7wm" path="res://scenes/environment/ceiling01.tscn" id="3_aikm1"]
+[ext_resource type="PackedScene" uid="uid://c8m0klfywyncd" path="res://scenes/environment/old/_floor01.tscn" id="1_ae78r"]
+[ext_resource type="PackedScene" uid="uid://bm552boax10j0" path="res://scenes/environment/old/_wall01.tscn" id="2_y7vaq"]
+[ext_resource type="PackedScene" uid="uid://bsju1jqepe7wm" path="res://scenes/environment/old/_ceiling01.tscn" id="3_aikm1"]
 
 [node name="Room03" type="Node2D"]
 

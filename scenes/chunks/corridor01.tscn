@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cnsi0qstadvb5"]
 
-[ext_resource type="PackedScene" uid="uid://bsju1jqepe7wm" path="res://scenes/environment/ceiling01.tscn" id="1_fllsl"]
+[ext_resource type="PackedScene" uid="uid://bsju1jqepe7wm" path="res://scenes/environment/old/_ceiling01.tscn" id="1_fllsl"]
 
 [node name="Corridor01" type="Node2D"]
 
