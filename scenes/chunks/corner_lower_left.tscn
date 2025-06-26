@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://se4ghfrl14v4"]
+
+[ext_resource type="PackedScene" uid="uid://bbul0haksqeod" path="res://scenes/environment/wall01.tscn" id="1_8k8yy"]
+[ext_resource type="PackedScene" uid="uid://dmay6xs486gvj" path="res://scenes/environment/floor01.tscn" id="2_qhc66"]
+
+[node name="CornerLowerLeft" type="Node2D"]
+
+[node name="Wall01" parent="." instance=ExtResource("1_8k8yy")]
+
+[node name="Floor01" parent="." instance=ExtResource("2_qhc66")]
+position = Vector2(0, 168)

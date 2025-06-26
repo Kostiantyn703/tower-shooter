@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://8pnswhht7xyg"]
+
+[ext_resource type="PackedScene" uid="uid://bdqdtfaro0vp1" path="res://scenes/environment/ceiling01.tscn" id="1_spjw8"]
+
+[node name="Ceiling" type="Node2D"]
+
+[node name="Ceiling01" parent="." instance=ExtResource("1_spjw8")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3riy56qumwk7"]
+
+[ext_resource type="PackedScene" uid="uid://bbul0haksqeod" path="res://scenes/environment/wall01.tscn" id="1_w8lk3"]
+[ext_resource type="PackedScene" uid="uid://bdqdtfaro0vp1" path="res://scenes/environment/ceiling01.tscn" id="2_oysts"]
+
+[node name="CornerUpperRight" type="Node2D"]
+
+[node name="Wall01" parent="." instance=ExtResource("1_w8lk3")]
+position = Vector2(168, 0)
+
+[node name="Ceiling01" parent="." instance=ExtResource("2_oysts")]
